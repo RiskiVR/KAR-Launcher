@@ -7,7 +7,11 @@ public class ButtonInfo : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 {
     [SerializeField] private TextMeshProUGUI text;
     [SerializeField] string info;
-    void Start() => text.text = String.Empty;
+    //void Start() => text.text = String.Empty;
+    private void OnEnable()
+    {
+        if (EventSystem.current.currentSelectedGameObject == gameObject) text.text = info;
+    }
     public void OnSelect(BaseEventData eventData)
     {
         if (MainUI.usingController) OnUIHandle(true);
