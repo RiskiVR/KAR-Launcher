@@ -20,6 +20,7 @@ public class MainUI : MonoBehaviour
     public Animator tabAnim;
     public Animator discAnim;
     public Animation infoAnim;
+    public TextMeshProUGUI infoText;
     public Animator menuBGAnim;
     public GameObject[] menuBG;
     public static int currentMenuPage;
@@ -41,6 +42,7 @@ public class MainUI : MonoBehaviour
     public void UpdateTab(int tab)
     {
         currentTab = tab;
+        infoText.text = String.Empty;
         foreach (GameObject g in tabs) g.SetActive(false);
         tabs[tab].SetActive(true);
         headerText.text = tabInfo[currentTab];

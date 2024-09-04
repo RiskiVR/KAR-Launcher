@@ -1,16 +1,13 @@
 using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using TMPro;
 
 public class ButtonInfo : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, ISelectHandler
 {
-    [SerializeField] private TextMeshProUGUI text;
     [SerializeField] string info;
-    //void Start() => text.text = String.Empty;
     private void OnEnable()
     {
-        if (EventSystem.current.currentSelectedGameObject == gameObject) text.text = info;
+        if (EventSystem.current.currentSelectedGameObject == gameObject) MainUI.instance.infoText.text = info;
     }
     public void OnSelect(BaseEventData eventData)
     {
@@ -29,12 +26,12 @@ public class ButtonInfo : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
             } else MainUI.instance.discAnim.SetBool("anim", false);
             MainUI.instance.audioSource.PlayOneShot(MainUI.instance.menu[3]);
             MainUI.instance.infoAnim.Play();
-            text.text = info;
+            MainUI.instance.infoText.text = info;
         }
         else
         {
             if (MainUI.currentTab == 0) MainUI.instance.discAnim.SetBool("anim", false);
-            text.text = String.Empty;
+            MainUI.instance.infoText.text = String.Empty;
         }
     }
 }
