@@ -5,19 +5,26 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class MainUI : MonoBehaviour
 {
-    [Header("Internal Elements")] public static MainUI instance;
-    public TextMeshProUGUI headerText;
+    public static MainUI instance;
+    
+    [Header("Audio")]
     public AudioSource audioSource;
     public AudioClip[] menu;
+    
+    [Header("Internal Elements")]
+    public TextMeshProUGUI headerText;
+    public Animation headerAnim;
     public Animator tabAnim;
     public Animator discAnim;
-    private Selectable[] allSelectables;
+    public Animation infoAnim;
+    public Animator menuBGAnim;
+    public GameObject[] menuBG;
+    public static int currentMenuPage;
     public static int currentTab;
-    private bool usingController;
+    public static bool usingController;
     [SerializeField] GameObject[] tabs;
     [SerializeField] string[] tabInfo;
     void Awake()
@@ -28,26 +35,29 @@ public class MainUI : MonoBehaviour
     private void Start()
     {
         InputSystem.onActionChange += InputSystem_onActionChange;
-        allSelectables = FindObjectsOfType<Selectable>(true);
         UpdateTab(0);
-        for (int i = 0; i < allSelectables.Length; i++)
-        {
-            var trigger = allSelectables[i].gameObject.AddComponent<EventTrigger>();
-            var entry = new EventTrigger.Entry();
-            entry.eventID = EventTriggerType.Select;
-            entry.callback.AddListener((eventData) => { audioSource.PlayOneShot(menu[3]); });
-            trigger.triggers.Add(entry);
-        }
     }
     public void SwitchScene(int sceneIndex) => SceneManager.LoadScene(sceneIndex);
-    
     public void UpdateTab(int tab)
     {
         currentTab = tab;
         foreach (GameObject g in tabs) g.SetActive(false);
         tabs[tab].SetActive(true);
         headerText.text = tabInfo[currentTab];
+        headerAnim.Play();
         if (usingController) SelectFirstButton();
+        if (currentTab > 0)
+        {
+            tabAnim.SetBool("anim", true);
+            menuBGAnim.SetBool("fade", true);
+            foreach (GameObject g in menuBG) g.SetActive(false);
+            menuBG[currentTab - 1].SetActive(true);
+        }
+        else
+        {
+            tabAnim.SetBool("anim", false);
+            menuBGAnim.SetBool("fade", false);
+        }
     }
     private void InputSystem_onActionChange(object obj, InputActionChange change)
     {
@@ -68,15 +78,12 @@ public class MainUI : MonoBehaviour
             if (EventSystem.current.currentSelectedGameObject == null) SelectFirstButton();
         }
         else EventSystem.current.SetSelectedGameObject(null);
-
-        foreach (Button b in allSelectables)
-        {
-            Navigation n = new Navigation();
-            n.mode = ctrl ? Navigation.Mode.Automatic : Navigation.Mode.None;
-            b.navigation = n;
-        }
     }
-
+    public void ShowDisc(bool show)
+    {
+        discAnim.SetTrigger("anim2");
+        discAnim.SetBool("anim", show); 
+    }
     public class MessageUI
     {
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
