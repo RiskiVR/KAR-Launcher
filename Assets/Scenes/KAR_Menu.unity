@@ -642,7 +642,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88ed63b86ed971b4e92fbc4a67a6861d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 1461321737}
   info: Streaming? Idk what this does tbh
 --- !u!114 &46920442
 MonoBehaviour:
@@ -858,7 +857,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88ed63b86ed971b4e92fbc4a67a6861d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 1461321737}
   info: Please add details
 --- !u!222 &61122390
 CanvasRenderer:
@@ -2174,7 +2172,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88ed63b86ed971b4e92fbc4a67a6861d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 1461321737}
   info: Return to the Main Menu
 --- !u!222 &217141765
 CanvasRenderer:
@@ -2328,7 +2325,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88ed63b86ed971b4e92fbc4a67a6861d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 1461321737}
   info: Return to the Main Menu
 --- !u!222 &222649040
 CanvasRenderer:
@@ -2979,7 +2975,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88ed63b86ed971b4e92fbc4a67a6861d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 1461321737}
   info: Back to main options!
 --- !u!222 &305247188
 CanvasRenderer:
@@ -3292,7 +3287,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88ed63b86ed971b4e92fbc4a67a6861d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 1461321737}
   info: Configure your KAR Client
 --- !u!114 &349984246
 MonoBehaviour:
@@ -3524,7 +3518,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88ed63b86ed971b4e92fbc4a67a6861d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 1461321737}
   info: Set up your Gecko Codes!
 --- !u!114 &360100849
 MonoBehaviour:
@@ -4421,7 +4414,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88ed63b86ed971b4e92fbc4a67a6861d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 1461321737}
   info: Return to the Main Menu
 --- !u!222 &503153089
 CanvasRenderer:
@@ -4723,7 +4715,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88ed63b86ed971b4e92fbc4a67a6861d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 1461321737}
   info: Return to the Main Menu
 --- !u!222 &530609580
 CanvasRenderer:
@@ -4862,7 +4853,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88ed63b86ed971b4e92fbc4a67a6861d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 1461321737}
   info: Host a game
 --- !u!114 &544729721
 MonoBehaviour:
@@ -5094,7 +5084,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88ed63b86ed971b4e92fbc4a67a6861d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 1461321737}
   info: View your replays!
 --- !u!114 &578440634
 MonoBehaviour:
@@ -5370,7 +5359,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88ed63b86ed971b4e92fbc4a67a6861d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 1461321737}
   info: Jump into a Netplay game!
 --- !u!114 &613520718
 MonoBehaviour:
@@ -5662,7 +5650,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88ed63b86ed971b4e92fbc4a67a6861d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 1461321737}
   info: Return to the Main Menu
 --- !u!222 &633436066
 CanvasRenderer:
@@ -5930,7 +5917,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88ed63b86ed971b4e92fbc4a67a6861d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 1461321737}
   info: Join a game
 --- !u!114 &717849804
 MonoBehaviour:
@@ -6499,7 +6485,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88ed63b86ed971b4e92fbc4a67a6861d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 1461321737}
   info: Return to the Main Menu
 --- !u!222 &805199464
 CanvasRenderer:
@@ -7843,7 +7828,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88ed63b86ed971b4e92fbc4a67a6861d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 1461321737}
   info: Please add details
 --- !u!222 &1098801873
 CanvasRenderer:
@@ -8412,7 +8396,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88ed63b86ed971b4e92fbc4a67a6861d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 1461321737}
   info: Return to the Main Menu
 --- !u!222 &1191789749
 CanvasRenderer:
@@ -10148,7 +10131,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88ed63b86ed971b4e92fbc4a67a6861d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 1461321737}
   info: Return to the Main Menu
 --- !u!222 &1569592137
 CanvasRenderer:
@@ -10602,7 +10584,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88ed63b86ed971b4e92fbc4a67a6861d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 1461321737}
   info: Please add details
 --- !u!222 &1590560513
 CanvasRenderer:
@@ -10699,6 +10680,7 @@ MonoBehaviour:
   tabAnim: {fileID: 911974901}
   discAnim: {fileID: 1247265138}
   infoAnim: {fileID: 698186505}
+  infoText: {fileID: 1461321737}
   menuBGAnim: {fileID: 1929329555}
   menuBG:
   - {fileID: 455063490}
@@ -10991,7 +10973,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88ed63b86ed971b4e92fbc4a67a6861d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 1461321737}
   info: Spectate a game
 --- !u!114 &1650386753
 MonoBehaviour:
@@ -11795,7 +11776,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88ed63b86ed971b4e92fbc4a67a6861d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 1461321737}
   info: Other Options!
 --- !u!222 &1703656706
 CanvasRenderer:
@@ -12189,7 +12169,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88ed63b86ed971b4e92fbc4a67a6861d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 1461321737}
   info: Please add details
 --- !u!222 &1820264460
 CanvasRenderer:
@@ -13499,7 +13478,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88ed63b86ed971b4e92fbc4a67a6861d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 1461321737}
   info: Reset your KAR Client
 --- !u!114 &2020160233
 MonoBehaviour:
