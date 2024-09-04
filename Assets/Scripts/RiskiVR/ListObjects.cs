@@ -11,7 +11,7 @@ public class ListObjects : MonoBehaviour
         foreach (GameObject g in objects) g.SetActive(false);
         foreach (GameObject g in objects)
         {
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.06f);
             objects[i].SetActive(true);
             i++;
         }
