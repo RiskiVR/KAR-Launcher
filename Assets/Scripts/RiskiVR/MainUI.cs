@@ -30,6 +30,7 @@ public class MainUI : MonoBehaviour
     {
         instance = this;
         InputSystem.onActionChange += InputSystem_onActionChange;
+        QualitySettings.vSyncCount = 1;
         UpdateTab(0);
         infoText.text = "Launcher by RiskiVR";
     }

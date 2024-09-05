@@ -4,11 +4,12 @@ using UnityEngine;
 public class AudioLoop : MonoBehaviour
 {
     [SerializeField] private float loopStartTime;
+    [SerializeField] private float loopEndTime;
     private AudioSource audioSource;
     void Start() => audioSource = GetComponent<AudioSource>();
     void Update()
     {
-        if (audioSource.time >= audioSource.clip.length || !audioSource.isPlaying)
+        if (audioSource.time >= loopEndTime || !audioSource.isPlaying)
         {
             audioSource.Play();
             audioSource.time = loopStartTime;
