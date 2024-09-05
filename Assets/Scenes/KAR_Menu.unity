@@ -642,7 +642,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88ed63b86ed971b4e92fbc4a67a6861d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  info: Set up livestreams with KARphin to match players' screens!
+  info: Manage livestreams for KARphin gameplay. 1-4 Player screens at once!
 --- !u!114 &46920442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4576,7 +4576,7 @@ AudioReverbZone:
   m_ReverbDelay: 0.022
   m_HFReference: 5000
   m_Diffusion: 100
-  m_Density: 0
+  m_Density: 100
   m_LFReference: 250
   m_RoomLF: 0
 --- !u!4 &523009084
@@ -5789,7 +5789,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &700344630
 RectTransform:
   m_ObjectHideFlags: 0

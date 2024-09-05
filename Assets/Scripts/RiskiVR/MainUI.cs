@@ -31,7 +31,7 @@ public class MainUI : MonoBehaviour
     void Awake()
     {
         instance = this;
-        Screen.SetResolution(1280, 960, false);
+        //Screen.SetResolution(1280, 960, false);
     }
     private void Start()
     {
