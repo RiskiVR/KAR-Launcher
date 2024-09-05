@@ -1,10 +1,13 @@
 using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class ButtonInfo : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, ISelectHandler
 {
     [SerializeField] string info;
+    private Button button;
+    private void Awake() => button = GetComponent<Button>();
     private void OnEnable()
     {
         if (EventSystem.current.currentSelectedGameObject == gameObject) MainUI.instance.infoText.text = info;
@@ -17,6 +20,7 @@ public class ButtonInfo : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     public void OnPointerExit(PointerEventData eventData) => OnUIHandle(false);
     public void OnUIHandle(bool enter)
     {
+        if (!button.interactable) return;
         if (enter)
         {
             if (MainUI.currentTab == 0)
