@@ -8,7 +8,7 @@ public class AudioLoop : MonoBehaviour
     void Start() => audioSource = GetComponent<AudioSource>();
     void Update()
     {
-        if (audioSource.time >= audioSource.clip.length)
+        if (audioSource.time >= audioSource.clip.length || !audioSource.isPlaying)
         {
             audioSource.Play();
             audioSource.time = loopStartTime;
