@@ -4,7 +4,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 
 public class MainUI : MonoBehaviour
 {
@@ -23,22 +22,17 @@ public class MainUI : MonoBehaviour
     public TextMeshProUGUI infoText;
     public Animator menuBGAnim;
     public GameObject[] menuBG;
-    public static int currentMenuPage;
     public static int currentTab;
     public static bool usingController;
     [SerializeField] GameObject[] tabs;
     [SerializeField] string[] tabInfo;
-    void Awake()
-    {
-        instance = this;
-        //Screen.SetResolution(1280, 960, false);
-    }
     private void Start()
     {
+        instance = this;
         InputSystem.onActionChange += InputSystem_onActionChange;
         UpdateTab(0);
+        infoText.text = "Launcher by RiskiVR";
     }
-    public void SwitchScene(int sceneIndex) => SceneManager.LoadScene(sceneIndex);
     public void UpdateTab(int tab)
     {
         currentTab = tab;
