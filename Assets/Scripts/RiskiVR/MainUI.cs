@@ -4,10 +4,13 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class MainUI : MonoBehaviour
 {
     public static MainUI instance;
+    public static int currentTab;
+    public static bool usingController;
     
     [Header("Audio")]
     public AudioSource audioSource;
@@ -22,10 +25,12 @@ public class MainUI : MonoBehaviour
     public TextMeshProUGUI infoText;
     public Animator menuBGAnim;
     public GameObject[] menuBG;
-    public static int currentTab;
-    public static bool usingController;
     [SerializeField] GameObject[] tabs;
     [SerializeField] string[] tabInfo;
+    
+    [Header("Confirmation Menu")]
+    public Transform confirmTransform;
+    public Button longButtonPrefab;
     private void Start()
     {
         instance = this;
