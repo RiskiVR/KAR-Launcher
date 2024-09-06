@@ -32,7 +32,6 @@ public class MainUI : MonoBehaviour
         InputSystem.onActionChange += InputSystem_onActionChange;
         QualitySettings.vSyncCount = 1;
         UpdateTab(0);
-        infoText.text = "Launcher by RiskiVR";
     }
     public void UpdateTab(int tab)
     {
