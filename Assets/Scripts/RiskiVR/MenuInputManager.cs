@@ -9,7 +9,7 @@ public class MenuInputManager : MonoBehaviour
     public UnityEvent onY;
     public UnityEvent onStart;
     [Header("Object Requirement")]
-    [SerializeField] private bool requiresObjectSelected;
+    [SerializeField] private bool requiresObject;
     [SerializeField] private GameObject requiredObject;
     [Header("Input Action References")]
     [SerializeField] private InputActionReference submit;
@@ -19,6 +19,10 @@ public class MenuInputManager : MonoBehaviour
     [SerializeField] private InputActionReference start;
     private void Update()
     {
+        if (requiresObject)
+        {
+            if (!requiredObject.activeSelf) return;
+        }
         if (submit.action.triggered) onA.Invoke();
         if (cancel.action.triggered) onB.Invoke();
         if (west.action.triggered) onX.Invoke();

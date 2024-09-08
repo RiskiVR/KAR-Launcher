@@ -12,16 +12,20 @@ public class MainUI : MonoBehaviour
     public static int currentTab;
     public static bool usingController;
     
+    [Header("Canvas")]
+    [SerializeField] GraphicRaycaster graphicRaycaster;
+    
     [Header("Audio")]
     public AudioSource audioSource;
     public AudioClip[] menu;
-    
+
     [Header("Internal Elements")]
     public TextMeshProUGUI headerText;
     public Animation headerAnim;
     public Animator tabAnim;
     public Animator discAnim;
     public Animation infoAnim;
+    public Animation infoAnim2;
     public TextMeshProUGUI infoText;
     public Animator menuBGAnim;
     public GameObject[] menuBG;
@@ -46,7 +50,7 @@ public class MainUI : MonoBehaviour
         tabs[tab].SetActive(true);
         headerText.text = tabInfo[currentTab];
         headerAnim.Play();
-        infoAnim.Play("InfoCircle2");
+        infoAnim2.Play();
         if (usingController) SelectFirstButton();
         if (currentTab > 0)
         {
@@ -75,6 +79,7 @@ public class MainUI : MonoBehaviour
     {
         Cursor.visible = !ctrl;
         usingController = ctrl;
+        graphicRaycaster.enabled = !ctrl;
         if (ctrl)
         {
             if (EventSystem.current.currentSelectedGameObject == null) SelectFirstButton();

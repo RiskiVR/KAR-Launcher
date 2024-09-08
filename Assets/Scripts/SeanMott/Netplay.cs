@@ -6,12 +6,12 @@ using UnityEngine;
 public class Netplay : MonoBehaviour
 {
 	//the index array for which Client to launch
-	string[] clientNames = {
+	public static string[] clientNames = {
 		"KARphin",
 		"KARphin_Legacy",
 		"KARphinDev"
 	};
-	uint currentClient = 0;
+	public static int currentClient = 0;
 
 	//attempts to boot the chosen client
 	void BootClient()
@@ -62,7 +62,7 @@ public class Netplay : MonoBehaviour
 	//when a new client is selected
 	public void _on_client_option_item_selected(long index)
 	{
-		currentClient = (uint)index;
+		currentClient = (int)index;
 
 		//forces it to KARphin if index is too high or low
 		if(currentClient < 0 || currentClient > 2)
@@ -122,12 +122,6 @@ public class Netplay : MonoBehaviour
 		}
 	}
 
-	//joins a match for spectating
-	public void _on_spectate_pressed()
-	{
-		BootClient();
-	}
-
 	//joins a match
 	public void _on_join_match_pressed()
 	{
@@ -139,6 +133,9 @@ public class Netplay : MonoBehaviour
 	{
 		BootClient();
 	}
+
+	public void _set_karphin_client(int client)
+	{
+		currentClient = client;
+	}
 }
-
-

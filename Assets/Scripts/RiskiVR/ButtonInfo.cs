@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ButtonInfo : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, ISelectHandler
 {
-    [SerializeField] string info;
+    public string info;
     private Button button;
     private void Awake() => button = GetComponent<Button>();
     private void OnEnable()
