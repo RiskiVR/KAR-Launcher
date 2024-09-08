@@ -8,6 +8,7 @@ https://github.com/SeanMott/KAR-KWQI
 
 //defines a class for common downloads of the core packages
 using System.IO;
+using System.IO.Compression;
 using System.Linq.Expressions;
 
 class KWQICommonInstalls
@@ -187,30 +188,25 @@ class KWQICommonInstalls
     }
 
     //installs the latest KAR Updater
-    /*public static bool GetLatest_KARUpdater(FileInfo brotliEXE, DirectoryInfo installTarget)
+    public static void GetLatest_KARUpdater(FileInfo brotliEXE, DirectoryInfo installTarget)
     {
         //downloads the latest KARphin
         FileInfo archive = KWQIWebClient.Download_Archive_Windows(installTarget,
-			"https://github.com/SeanMott/KAR-Workshop/releases/download/KWQI-Data-Dev/ClientDeps.tar.gz.br",
+			"https://github.com/RiskiVR/KAR-Updater/releases/download/latest/KARUpdater.zip",
 			"KARUpdater");
-
-        //unpacks it
-        FileInfo tar = KWQIArchive.BrotliPackage_UnpackToTar_Windows(brotliEXE, archive, installTarget);
         
         //uncompresses it
-        DirectoryInfo uncompressed = KWQIArchive.TarPackage_Unpack_Windows(tar, installTarget);
-        uncompressed = new DirectoryInfo(uncompressed.FullName + "/KARUpdater");
+        ZipFile.ExtractToDirectory("KARUpdater", "KARUpdater");
+        
 
         //moves the contents into the target directory
-        KWInstaller.CopyAllDirContents(uncompressed, installTarget);
+        //KWInstaller.CopyAllDirContents(uncompressed, installTarget);
 
         //clean up
         archive.Delete();
-        tar.Delete();
-        uncompressed.Delete(true);
-
-        return true;
-    }*/
+        //tar.Delete();
+        //uncompressed.Delete(true);
+    }
 
     //installs the latest KAR Workshop
     public static bool GetLatest_KARWorkshop(FileInfo brotliEXE, DirectoryInfo installTarget)
