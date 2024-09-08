@@ -197,7 +197,7 @@ class KWQICommonInstalls
         {
             try
             {
-                client.DownloadFile("https://github.com/RiskiVR/KAR-Updater/releases/latest/download/KARUpdater.zip", "KARUpdater");
+                client.DownloadFile("https://github.com/RiskiVR/KAR-Updater/releases/latest/download/UpdateFiles.zip", "KARUpdater");
             }
             catch (Exception ex)
             {
@@ -209,12 +209,9 @@ class KWQICommonInstalls
         
         //uncompresses it
         ZipFile.ExtractToDirectory("KARUpdater", Directory.GetCurrentDirectory());
-        
 
         //clean up
         File.Delete("KARUpdater");
-        //tar.Delete();
-        //uncompressed.Delete(true);
     }
 
     //installs the latest KAR Workshop
