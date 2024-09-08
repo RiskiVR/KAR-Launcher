@@ -18,14 +18,14 @@ class KWQIWebClient
 	//downloads a Archive on Windows (NOT ASYNC) || returns the Archive it downloaded
 	static public FileInfo Download_Archive_Windows(DirectoryInfo outputFolder, string archiveURL, string archiveName)
 	{
-        FileInfo archive = new FileInfo($"{outputFolder.FullName}/{archiveName}.br");
+        FileInfo archive = new FileInfo($"{outputFolder.FullName}/{archiveName}.zip");
 
         //attempts a download
 		using (WebClient client = new WebClient())
         {
             try
             {
-                client.DownloadFileAsync(new Uri(archiveURL), archive.FullName);
+                client.DownloadFile(archiveURL, archive.FullName);
                 Console.WriteLine($"Download completed: {archive.FullName}");
             }
             catch (Exception ex)

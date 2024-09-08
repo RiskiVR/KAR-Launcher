@@ -7,9 +7,11 @@ https://github.com/SeanMott/KAR-KWQI
 */
 
 //defines a class for common downloads of the core packages
+
+using System;
 using System.IO;
 using System.IO.Compression;
-using System.Linq.Expressions;
+using System.Net;
 
 class KWQICommonInstalls
 {
@@ -188,22 +190,29 @@ class KWQICommonInstalls
     }
 
     //installs the latest KAR Updater
-    public static void GetLatest_KARUpdater(FileInfo brotliEXE, DirectoryInfo installTarget)
+    public static void GetLatest_KARUpdater()
     {
         //downloads the latest KARphin
-        FileInfo archive = KWQIWebClient.Download_Archive_Windows(installTarget,
-			"https://github.com/RiskiVR/KAR-Updater/releases/download/latest/KARUpdater.zip",
-			"KARUpdater");
+        using (WebClient client = new WebClient())
+        {
+            try
+            {
+                client.DownloadFile("https://github.com/RiskiVR/KAR-Updater/releases/latest/download/KARUpdater.zip", "KARUpdater");
+            }
+            catch (Exception ex)
+            {
+                UnityEngine.Debug.LogError(ex);
+                MainUI.instance.audioSource.PlayOneShot(MainUI.instance.menu[4]);
+                MainUI.MessageUI.MessageBox(IntPtr.Zero, ex.ToString(), "Download Failed!", 0);
+            }
+        }
         
         //uncompresses it
-        ZipFile.ExtractToDirectory("KARUpdater", "KARUpdater");
+        ZipFile.ExtractToDirectory("KARUpdater", Directory.GetCurrentDirectory());
         
 
-        //moves the contents into the target directory
-        //KWInstaller.CopyAllDirContents(uncompressed, installTarget);
-
         //clean up
-        archive.Delete();
+        File.Delete("KARUpdater");
         //tar.Delete();
         //uncompressed.Delete(true);
     }
