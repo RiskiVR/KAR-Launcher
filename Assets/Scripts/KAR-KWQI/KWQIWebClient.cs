@@ -25,7 +25,7 @@ class KWQIWebClient
         {
             try
             {
-                client.DownloadFile(archiveURL, archive.FullName);
+                client.DownloadFileAsync(new Uri(archiveURL), archive.FullName);
                 Console.WriteLine($"Download completed: {archive.FullName}");
             }
             catch (Exception ex)

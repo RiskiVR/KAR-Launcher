@@ -2,13 +2,14 @@ using System;
 using System.IO;
 using System.Net;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 //automatically downloads the latest KARphin if it is out of date
 public class AutoDownload : MonoBehaviour
 {
+	[SerializeField] ButtonListController menuButtons;
 	void Start()
 	{
+		MainUI.instance.infoText.text = "Checking for updates...";
 		//the URL to the build date file for KARphin
 		string fileUrl = "https://github.com/SeanMott/KARphin_Modern/releases/download/latest/new_KARphinBuild.txt";
 
@@ -45,7 +46,7 @@ public class AutoDownload : MonoBehaviour
 			File.WriteAllText("KARphinBuild.txt", newBuildDate);
 			File.Delete("new_KARphinBuild.txt");
 		}
-
-		SceneManager.LoadScene(0);
+		menuButtons.SetInteractable(true);
+		MainUI.instance.infoText.text = String.Empty;
 	}
 }

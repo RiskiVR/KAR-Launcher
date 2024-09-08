@@ -46,6 +46,7 @@ public class MainUI : MonoBehaviour
         tabs[tab].SetActive(true);
         headerText.text = tabInfo[currentTab];
         headerAnim.Play();
+        infoAnim.Play("InfoCircle2");
         if (usingController) SelectFirstButton();
         if (currentTab > 0)
         {

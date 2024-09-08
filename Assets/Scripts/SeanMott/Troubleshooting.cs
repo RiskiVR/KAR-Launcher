@@ -21,7 +21,7 @@ public class Troubleshooting : MonoBehaviour
             }
 
             //downloads
-            //KWQICommonInstalls.GetLatest_KARUpdater(KWStructure.GetSupportTool_Brotli_Windows(installDir), installDir);
+            KWQICommonInstalls.GetLatest_KARUpdater(KWStructure.GetSupportTool_Brotli_Windows(installDir), installDir);
 		
             //runs the Updater
             var updater = new System.Diagnostics.Process();
