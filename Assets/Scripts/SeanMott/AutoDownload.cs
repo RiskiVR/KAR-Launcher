@@ -7,8 +7,8 @@ using UnityEngine;
 public class AutoDownload : MonoBehaviour
 {
 	[SerializeField] ButtonListController menuButtons;
-	void Start()
-	{
+    void Start()
+    {
 		MainUI.instance.infoText.text = "Checking for updates...";
 		//the URL to the build date file for KARphin
 		string fileUrl = "https://github.com/SeanMott/KARphin_Modern/releases/download/latest/new_KARphinBuild.txt";
@@ -24,7 +24,7 @@ public class AutoDownload : MonoBehaviour
 			catch (Exception ex)
 			{
 				Debug.Log("An error occurred: " + ex.Message);
-				MainUI.MessageUI.MessageBox(IntPtr.Zero, ex.ToString(), "Error!", 0);
+				//MainUI.MessageUI.MessageBox(IntPtr.Zero, ex.ToString(), "Error!", 0);
 			}
 		}
 
@@ -45,7 +45,7 @@ public class AutoDownload : MonoBehaviour
 			File.WriteAllText("KARphinBuild.txt", newBuildDate);
 			File.Delete("new_KARphinBuild.txt");
 		}
-		menuButtons.SetInteractable(true);
+		//menuButtons.SetInteractable(true);
 		MainUI.instance.infoText.text = String.Empty;
 	}
 }
