@@ -39,8 +39,7 @@ public class AutoDownload : MonoBehaviour
 		if(newBuildDate != currentBuild)
 		{
 			//downloads KARphin
-			KWQICommonInstalls.GetLatest_KARphin(KWStructure.GetSupportTool_Brotli_Windows(new DirectoryInfo(System.Environment.CurrentDirectory)),
-			KWStructure.GenerateKWStructure_Directory_NetplayClients(new DirectoryInfo(System.Environment.CurrentDirectory)));
+			KWQICommonInstalls.GetLatest_KARphin(KWStructure.GenerateKWStructure_Directory_NetplayClients(new DirectoryInfo(System.Environment.CurrentDirectory)));
 
 			//updates the build data
 			File.WriteAllText("KARphinBuild.txt", newBuildDate);

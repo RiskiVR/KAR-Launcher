@@ -16,52 +16,46 @@ using System.Net;
 class KWQICommonInstalls
 {
     //installs the latest KARphin
-    public static bool GetLatest_KARphin(FileInfo brotliEXE, DirectoryInfo installTarget)
+    public static bool GetLatest_KARphin(DirectoryInfo installTarget)
     {
         //downloads the latest KARphin
-        FileInfo archive = KWQIWebClient.Download_Archive_Windows(installTarget, 
-        "https://github.com/SeanMott/KARphin_Modern/releases/download/latest/KARphin.tar.gz.br",
+        FileInfo archive = KWQIWebClient.Download_Archive_Windows(installTarget,
+        "https://github.com/SeanMott/KARphin_Modern/releases/download/latest/KARphin.zip",
         "KARphin");
 
         //unpacks it
-        FileInfo tar = KWQIArchive.BrotliPackage_UnpackToTar_Windows(brotliEXE, archive, installTarget);
-        
-        //uncompresses it
-        DirectoryInfo uncompressed = KWQIArchive.TarPackage_Unpack_Windows(tar, installTarget);
-        uncompressed = new DirectoryInfo(uncompressed.FullName + "/KARphin");
+        DirectoryInfo uncompressed = new DirectoryInfo(installTarget.FullName + "/KARphin");
+        ZipFile.ExtractToDirectory(archive.FullName, uncompressed.FullName, true);
 
         //moves the contents into the target directory
+        KWInstaller.CopyAllDirContents(uncompressed, installTarget);
         KWInstaller.CopyAllDirContents(uncompressed, installTarget);
 
         //clean up
         archive.Delete();
-        tar.Delete();
         uncompressed.Delete(true);
 
         return true;
     }
 
     //installs the latest KARphin Dev
-    public static bool GetLatest_KARphinDev(FileInfo brotliEXE, DirectoryInfo installTarget)
+    public static bool GetLatest_KARphinDev(DirectoryInfo installTarget)
     {
         //downloads the latest KARphin
-        FileInfo archive = KWQIWebClient.Download_Archive_Windows(installTarget, 
-        "https://github.com/SeanMott/KARphin_Modern/releases/download/latest-dev/KARphinDev.tar.gz.br",
+        FileInfo archive = KWQIWebClient.Download_Archive_Windows(installTarget,
+        "https://github.com/SeanMott/KARphin_Modern/releases/download/latest-dev/KARphinDev.zip",
         "KARphinDev");
 
         //unpacks it
-        FileInfo tar = KWQIArchive.BrotliPackage_UnpackToTar_Windows(brotliEXE, archive, installTarget);
+        DirectoryInfo uncompressed = new DirectoryInfo(installTarget.FullName + "/KARphinDev");
+        ZipFile.ExtractToDirectory(archive.FullName, uncompressed.FullName, true);
         
-        //uncompresses it
-        DirectoryInfo uncompressed = KWQIArchive.TarPackage_Unpack_Windows(tar, installTarget);
-        uncompressed = new DirectoryInfo(uncompressed.FullName + "/KARphinDev");
-
         //moves the contents into the target directory
+        KWInstaller.CopyAllDirContents(uncompressed, installTarget);
         KWInstaller.CopyAllDirContents(uncompressed, installTarget);
 
         //clean up
         archive.Delete();
-        tar.Delete();
         uncompressed.Delete(true);
 
         return true;
@@ -164,26 +158,23 @@ class KWQICommonInstalls
     }
 
     //installs the latest Client Deps
-    public static bool GetLatest_ClientDeps(FileInfo brotliEXE, DirectoryInfo installTarget)
+    public static bool GetLatest_ClientDeps(DirectoryInfo installTarget)
     {
         //downloads the latest KARphin
         FileInfo archive = KWQIWebClient.Download_Archive_Windows(installTarget,
-			"https://github.com/SeanMott/KAR-Workshop/releases/download/KWQI-Data-Dev/ClientDeps.tar.gz.br",
+            "https://github.com/SeanMott/KAR-Workshop/releases/download/KWQI-Data-Dev/ClientDeps.zip",
 			"ClientDeps");
 
         //unpacks it
-        FileInfo tar = KWQIArchive.BrotliPackage_UnpackToTar_Windows(brotliEXE, archive, installTarget);
-        
-        //uncompresses it
-        DirectoryInfo uncompressed = KWQIArchive.TarPackage_Unpack_Windows(tar, installTarget);
-        uncompressed = new DirectoryInfo(uncompressed.FullName + "/ClientDeps");
+        DirectoryInfo uncompressed = new DirectoryInfo(installTarget.FullName + "/ClientDeps");
+        ZipFile.ExtractToDirectory(archive.FullName, uncompressed.FullName, true);
 
         //moves the contents into the target directory
+        KWInstaller.CopyAllDirContents(uncompressed, installTarget);
         KWInstaller.CopyAllDirContents(uncompressed, installTarget);
 
         //clean up
         archive.Delete();
-        tar.Delete();
         uncompressed.Delete(true);
 
         return true;

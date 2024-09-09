@@ -2,6 +2,7 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using UnityEngine;
+using static UnityEngine.UIElements.UxmlAttributeDescription;
 
 public class Netplay : MonoBehaviour
 {
@@ -16,34 +17,61 @@ public class Netplay : MonoBehaviour
 	//attempts to boot the chosen client
 	void BootClient()
 	{
-		DirectoryInfo installDir = new DirectoryInfo(System.Environment.CurrentDirectory);
+		//DirectoryInfo installDir = new DirectoryInfo(System.Environment.CurrentDirectory);
+		DirectoryInfo installDir = new DirectoryInfo("C:/Users/rafal/Desktop/Boot test/KARNetplay");
 
 		try
 		{
 			//checks if the client exists
 			DirectoryInfo clientsFolder = KWStructure.GenerateKWStructure_Directory_NetplayClients(installDir);
-			FileInfo client = new FileInfo(clientsFolder.FullName + "/" + clientNames[currentClient] + ".exe");
-			if(!client.Exists) //if it doesn't exist we download it
+
+			//gets the correct client
+			FileInfo client = new FileInfo(clientsFolder.FullName);
+			switch (clientNames[currentClient])
 			{
-				//if karphin
-				if(clientNames[currentClient] == "KARphin")
-					KWQICommonInstalls.GetLatest_KARphin(KWStructure.GetSupportTool_Brotli_Windows(installDir),
-						KWStructure.GenerateKWStructure_Directory_NetplayClients(installDir));
+				case "KARphin":
+					client = new FileInfo(clientsFolder.FullName + "/KARphin.exe");
+					if (!client.Exists) //if it doesn't exist we download it
+					{
+                        KWQICommonInstalls.GetLatest_KARphin(KWStructure.GenerateKWStructure_Directory_NetplayClients(installDir));
 
-				//if KARphin Dev
-				else if(clientNames[currentClient] == "KARphinDev")
-					KWQICommonInstalls.GetLatest_KARphinDev(KWStructure.GetSupportTool_Brotli_Windows(installDir),
-						KWStructure.GenerateKWStructure_Directory_NetplayClients(installDir));
+                        client = new FileInfo(clientsFolder.FullName + "/KARphin.exe");
+                        if (!client.Exists)
+                        {
+                            System.Console.WriteLine($"{client.FullName}");
+                            System.Console.WriteLine($"{clientNames[currentClient]} does not exist, can not boot.");
+                            return;
+                        }
+                    }
+					
+                    break;
 
-				//reget the exe and verify it doesn't exist
-				client = new FileInfo(clientsFolder.FullName + "/" + clientNames[currentClient] + ".exe");
-				if(!client.Exists)
-				{
-					System.Console.WriteLine($"{clientsFolder.FullName}/{clientNames[currentClient]}");
-					System.Console.WriteLine($"{clientNames[currentClient]} does not exist, can not boot.");
-					return;
-				}
-			}
+                case "KARphin_Legacy":
+                    client = new FileInfo(clientsFolder.FullName + "/Legacy/KARphin_Legacy.exe");
+                    if (!client.Exists) //if it doesn't exist we download it
+                    {
+                        System.Console.WriteLine($"{client.FullName}");
+                        System.Console.WriteLine($"{clientNames[currentClient]} does not exist, can not boot.");
+                        return;
+                    }
+                    break;
+
+                case "KARphinDev":
+                    client = new FileInfo(clientsFolder.FullName + "/KARphinDev.exe");
+                    if (!client.Exists) //if it doesn't exist we download it
+                    {
+                        KWQICommonInstalls.GetLatest_KARphinDev(KWStructure.GenerateKWStructure_Directory_NetplayClients(installDir));
+
+                        client = new FileInfo(clientsFolder.FullName + "/KARphinDev.exe");
+                        if (!client.Exists)
+                        {
+                            System.Console.WriteLine($"{client.FullName}");
+                            System.Console.WriteLine($"{clientNames[currentClient]} does not exist, can not boot.");
+                            return;
+                        }
+                    }
+                    break;
+            }
 
 			//boots the client
 			var dolphin = new Process();
@@ -59,16 +87,6 @@ public class Netplay : MonoBehaviour
 		}
 	}
 
-	//when a new client is selected
-	public void _on_client_option_item_selected(long index)
-	{
-		currentClient = (int)index;
-
-		//forces it to KARphin if index is too high or low
-		if(currentClient < 0 || currentClient > 2)
-			currentClient = 0;
-	}
-
 	//boots client for configuring
 	public void _on_configure_pressed()
 	{
@@ -80,7 +98,7 @@ public class Netplay : MonoBehaviour
 	public void _on_reset_client_pressed()
 	{
 		DirectoryInfo installDir = new DirectoryInfo(System.Environment.CurrentDirectory);
-		FileInfo brotliEXE = KWStructure.GetSupportTool_Brotli_Windows(installDir);
+		//FileInfo brotliEXE = KWStructure.GetSupportTool_Brotli_Windows(installDir);
 
 		try
 		{
@@ -93,7 +111,7 @@ public class Netplay : MonoBehaviour
 			}
 
 			//gets the client deps
-			KWQICommonInstalls.GetLatest_ClientDeps(brotliEXE, netplay);
+			KWQICommonInstalls.GetLatest_ClientDeps(netplay);
 
 			//gets the Gekko Codes
 			KWQICommonInstalls.GetLatest_GekkoCodes_Backside(KWStructure.GenerateKWStructure_SubDirectory_Clients_User_GameSettings(installDir));
@@ -112,7 +130,7 @@ public class Netplay : MonoBehaviour
 			file.Close();
 
 			//gets KARphin
-			KWQICommonInstalls.GetLatest_KARphin(brotliEXE, netplay);
+			KWQICommonInstalls.GetLatest_KARphin(netplay);
 		}
 		catch (Exception e)
 		{
