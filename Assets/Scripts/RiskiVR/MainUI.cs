@@ -31,6 +31,9 @@ public class MainUI : MonoBehaviour
     public GameObject[] menuBG;
     [SerializeField] GameObject[] tabs;
     [SerializeField] string[] tabInfo;
+    [SerializeField] Color[] menuColors;
+    [SerializeField] Image coloredRings;
+    public RingSpin ringSpin;
     
     [Header("Confirmation Menu")]
     public Transform confirmTransform;
@@ -58,11 +61,14 @@ public class MainUI : MonoBehaviour
             menuBGAnim.SetBool("fade", true);
             foreach (GameObject g in menuBG) g.SetActive(false);
             menuBG[currentTab - 1].SetActive(true);
+            coloredRings.color = menuColors[tab];
+            ringSpin.Fade(false);
         }
         else
         {
             tabAnim.SetBool("anim", false);
             menuBGAnim.SetBool("fade", false);
+            ringSpin.Fade(true);
         }
     }
     private void InputSystem_onActionChange(object obj, InputActionChange change)
