@@ -38,7 +38,7 @@ public class MainUI : MonoBehaviour
     [Header("Confirmation Menu")]
     public Transform confirmTransform;
     public Button longButtonPrefab;
-    private void Start()
+    private void Awake()
     {
         instance = this;
         InputSystem.onActionChange += InputSystem_onActionChange;

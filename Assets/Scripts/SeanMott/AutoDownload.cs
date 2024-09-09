@@ -9,6 +9,7 @@ public class AutoDownload : MonoBehaviour
 	[SerializeField] ButtonListController menuButtons;
     void Start()
     {
+	    menuButtons.SetInteractable(false);
 		MainUI.instance.infoText.text = "Checking for updates...";
 		//the URL to the build date file for KARphin
 		string fileUrl = "https://github.com/SeanMott/KARphin_Modern/releases/download/latest/new_KARphinBuild.txt";
@@ -45,7 +46,7 @@ public class AutoDownload : MonoBehaviour
 			File.WriteAllText("KARphinBuild.txt", newBuildDate);
 			File.Delete("new_KARphinBuild.txt");
 		}
-		//menuButtons.SetInteractable(true);
+		menuButtons.SetInteractable(true);
 		MainUI.instance.infoText.text = String.Empty;
 	}
 }
