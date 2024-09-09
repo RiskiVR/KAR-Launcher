@@ -17,8 +17,8 @@ public class Netplay : MonoBehaviour
 	//attempts to boot the chosen client
 	void BootClient()
 	{
-		//DirectoryInfo installDir = new DirectoryInfo(System.Environment.CurrentDirectory);
-		DirectoryInfo installDir = new DirectoryInfo("C:/Users/rafal/Desktop/Boot test/KARNetplay");
+		DirectoryInfo installDir = new DirectoryInfo(System.Environment.CurrentDirectory);
+		//DirectoryInfo installDir = new DirectoryInfo("C:/Users/rafal/Desktop/Boot test/KARNetplay");
 
 		try
 		{
