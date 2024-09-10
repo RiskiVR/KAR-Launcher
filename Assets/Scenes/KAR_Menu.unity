@@ -5279,7 +5279,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startSpeed: 0.6
-  endSpeed: 0.2
+  endSpeed: 0.1
   decreaseAmt: 0.2
   tSpin: 0
   tFade: 0
