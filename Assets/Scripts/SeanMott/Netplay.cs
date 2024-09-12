@@ -82,7 +82,7 @@ public class Netplay : MonoBehaviour
 		catch (Exception e)
 		{
 			UnityEngine.Debug.LogError(e);
-			MainUI.instance.audioSource.PlayOneShot(MainUI.instance.menu[4]);
+			MainUI.instance.sfx.PlayOneShot(MainUI.instance.menu[4]);
 			MainUI.MessageUI.MessageBox(IntPtr.Zero, e.ToString(), "Download Failed!", 0);
 		}
 	}
@@ -135,7 +135,7 @@ public class Netplay : MonoBehaviour
 		catch (Exception e)
 		{
 			UnityEngine.Debug.LogError(e);
-			MainUI.instance.audioSource.PlayOneShot(MainUI.instance.menu[4]);
+			MainUI.instance.sfx.PlayOneShot(MainUI.instance.menu[4]);
 			MainUI.MessageUI.MessageBox(IntPtr.Zero, e.ToString(), "Download Failed!", 0);
 		}
 	}

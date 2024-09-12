@@ -33,7 +33,7 @@ public class ButtonInfo : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
                 MainUI.instance.discAnim.SetBool("anim", false);
                 MainUI.instance.ringSpin.Spin();
             }
-            MainUI.instance.audioSource.PlayOneShot(MainUI.instance.menu[3]);
+            MainUI.instance.sfx.PlayOneShot(MainUI.instance.menu[3]);
             if (info == String.Empty) return;
             MainUI.instance.infoAnim.Play();
             MainUI.instance.infoText.text = info;

@@ -14,9 +14,10 @@ public class MainUI : MonoBehaviour
     
     [Header("Canvas")]
     [SerializeField] GraphicRaycaster graphicRaycaster;
-    
+
     [Header("Audio")]
-    public AudioSource audioSource;
+    public AudioSource sfx;
+    public AudioSource bgm;
     public AudioClip[] menu;
 
     [Header("Internal Elements")]
@@ -44,6 +45,12 @@ public class MainUI : MonoBehaviour
         InputSystem.onActionChange += InputSystem_onActionChange;
         QualitySettings.vSyncCount = 1;
         UpdateTab(0);
+    }
+
+    private void Update()
+    {
+        if (!usingController) graphicRaycaster.enabled = Application.isFocused;
+        bgm.mute = !Application.isFocused;
     }
     public void UpdateTab(int tab)
     {

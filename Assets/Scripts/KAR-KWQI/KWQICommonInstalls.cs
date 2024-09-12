@@ -193,7 +193,7 @@ class KWQICommonInstalls
             catch (Exception ex)
             {
                 UnityEngine.Debug.LogError(ex);
-                MainUI.instance.audioSource.PlayOneShot(MainUI.instance.menu[4]);
+                MainUI.instance.sfx.PlayOneShot(MainUI.instance.menu[4]);
                 MainUI.MessageUI.MessageBox(IntPtr.Zero, ex.ToString(), "Download Failed!", 0);
             }
         }

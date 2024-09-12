@@ -26,7 +26,7 @@ public class ConfirmEvent : MonoBehaviour
             confirmButton.GetComponentInChildren<TextMeshProUGUI>().text = "Confirm";
             cancelButton.onClick.AddListener(() =>
             {
-                MainUI.instance.audioSource.PlayOneShot(MainUI.instance.menu[0]);
+                MainUI.instance.sfx.PlayOneShot(MainUI.instance.menu[0]);
                 onCancel.Invoke(); onEither.Invoke();
                 foreach (Transform btn in MainUI.instance.confirmTransform.GetChild(1)) Destroy(btn.gameObject);
                 MainUI.instance.confirmTransform.gameObject.SetActive(false);
@@ -34,10 +34,10 @@ public class ConfirmEvent : MonoBehaviour
             });
             confirmButton.onClick.AddListener(() =>
             {
-                MainUI.instance.audioSource.PlayOneShot(MainUI.instance.menu[1]);
+                MainUI.instance.sfx.PlayOneShot(MainUI.instance.menu[1]);
                 onConfirm.Invoke(); onEither.Invoke();
-                MainUI.instance.audioSource.PlayOneShot(MainUI.instance.menu[2]);
-                MainUI.instance.audioSource.PlayOneShot(MainUI.instance.menu[6]);
+                MainUI.instance.sfx.PlayOneShot(MainUI.instance.menu[2]);
+                MainUI.instance.sfx.PlayOneShot(MainUI.instance.menu[6]);
                 foreach (Transform btn in MainUI.instance.confirmTransform.GetChild(1)) Destroy(btn.gameObject);
                 MainUI.instance.confirmTransform.gameObject.SetActive(false);
                 EventSystem.current.SetSelectedGameObject(gameObject);

@@ -155,7 +155,7 @@ RectTransform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1036076437}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 17.8}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 450, y: 22.5}
@@ -15122,7 +15122,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   graphicRaycaster: {fileID: 1944976049}
-  audioSource: {fileID: 483415455}
+  sfx: {fileID: 483415455}
+  bgm: {fileID: 1653914482}
   menu:
   - {fileID: 8300000, guid: 4dd936a63893b2d43be9782dbc63a6c6, type: 3}
   - {fileID: 8300000, guid: 97af18b105e875242a10cd71dea8842a, type: 3}
