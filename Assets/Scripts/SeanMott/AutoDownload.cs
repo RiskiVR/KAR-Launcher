@@ -13,8 +13,8 @@ public class AutoDownload : MonoBehaviour
 	void Awake() => StartCoroutine(Download());
 	IEnumerator Download()
 	{
-		yield return new WaitForSeconds(0.01f);
 		headerText.text = "Checking for updates...";
+		yield return new WaitForSeconds(0.01f);
 		//the URL to the build date file for KARphin
 		string fileUrl = "https://github.com/SeanMott/KARphin_Modern/releases/download/latest/new_KARphinBuild.txt";
 
@@ -50,6 +50,7 @@ public class AutoDownload : MonoBehaviour
 			File.WriteAllText("KARphinBuild.txt", newBuildDate);
 			File.Delete("new_KARphinBuild.txt");
 		}
+		headerText.text = "Loading menu...";
 		SceneManager.LoadScene(1);
 	}
 }

@@ -19401,7 +19401,7 @@ GameObject:
   - component: {fileID: 2074404514}
   - component: {fileID: 2074404515}
   m_Layer: 0
-  m_Name: Menu Functions
+  m_Name: Scripts
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
