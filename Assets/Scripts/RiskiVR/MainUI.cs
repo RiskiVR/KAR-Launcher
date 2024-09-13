@@ -47,9 +47,9 @@ public class MainUI : MonoBehaviour
         UpdateTab(0);
     }
 
-    private void Update()
+    public void OnApplicationFocus(bool hasFocus)
     {
-        if (!usingController) graphicRaycaster.enabled = Application.isFocused;
+        if (!usingController) graphicRaycaster.enabled = hasFocus;
     }
     public void UpdateTab(int tab)
     {
@@ -89,6 +89,8 @@ public class MainUI : MonoBehaviour
     private void SelectFirstButton() => EventSystem.current.SetSelectedGameObject(tabs[currentTab].transform.GetChild(0).transform.GetChild(0).gameObject);
     private void UseController(bool ctrl)
     {
+        if (!Application.isFocused) return;
+        
         Cursor.visible = !ctrl;
         usingController = ctrl;
         graphicRaycaster.enabled = !ctrl;
