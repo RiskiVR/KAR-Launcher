@@ -50,7 +50,6 @@ public class MainUI : MonoBehaviour
     private void Update()
     {
         if (!usingController) graphicRaycaster.enabled = Application.isFocused;
-        bgm.mute = !Application.isFocused;
     }
     public void UpdateTab(int tab)
     {
