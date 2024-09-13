@@ -47,7 +47,7 @@ public class Netplay : MonoBehaviour
                     break;
 
                 case "KARphin_Legacy":
-                    client = new FileInfo(clientsFolder.FullName + "/Legacy/KARphin_Legacy.exe");
+                    client = new FileInfo(clientsFolder.FullName + "/KARphin_Legacy.exe");
                     if (!client.Exists) //if it doesn't exist we download it
                     {
                         System.Console.WriteLine($"{client.FullName}");
