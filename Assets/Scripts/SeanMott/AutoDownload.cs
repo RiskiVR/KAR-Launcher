@@ -10,24 +10,43 @@ using UnityEngine.SceneManagement;
 public class AutoDownload : MonoBehaviour
 {
 	[SerializeField] TextMeshProUGUI headerText;
+	[SerializeField] private GameObject buttons;
 	void Awake()
 	{
-		//checks that the launcher is at the latest
+		if (Directory.Exists("Clients")) RunCoroutines();
+		else
+		{
+			headerText.text = "There is no KARphin client installed. Set up KARphin?";
+			buttons.SetActive(true);
+		}
+    }
+
+	public void RunCoroutines()
+	{
+		//performs a launcher check
+		StartCoroutine(LauncherDL());
+
+		//performs a KARphin update
+		StartCoroutine(KARphinDL());
+	}
+	
+	//checks that the launcher is at the latest
+	IEnumerator LauncherDL()
+	{
+		headerText.text = "Checking for Launcher updates...";
+		yield return new WaitForSeconds(0.01f);
 		System.Diagnostics.Process updater = new System.Diagnostics.Process();
 		updater.StartInfo.FileName = new DirectoryInfo(System.Environment.CurrentDirectory).FullName + "/KAR_BootUpdate.exe";
 		updater.StartInfo.WorkingDirectory = new DirectoryInfo(System.Environment.CurrentDirectory).FullName;
-        updater.StartInfo.Arguments = "-launcher " + Application.version;
-        updater.Start();
+		updater.StartInfo.Arguments = "-launcher " + Application.version;
+		updater.Start();
 		updater.WaitForExit();
-
-        //performs a KARphin update
-        StartCoroutine(Download());
-    }
+	}
 
 	//performs a download of KARphin
-	IEnumerator Download()
+	IEnumerator KARphinDL()
 	{
-		headerText.text = "Checking for updates...";
+		headerText.text = "Checking for KARphin updates...";
 		yield return new WaitForSeconds(0.01f);
 		//the URL to the build date file for KARphin
 		string fileUrl = "https://github.com/SeanMott/KARphin_Modern/releases/download/latest/new_KARphinBuild.txt";
@@ -43,7 +62,7 @@ public class AutoDownload : MonoBehaviour
 			catch (Exception ex)
 			{
 				Debug.Log("An error occurred: " + ex.Message);
-				MainUI.MessageUI.MessageBox(IntPtr.Zero, ex.ToString(), "Error!", 0);
+				MessageUI.MessageBox(IntPtr.Zero, ex.ToString(), "Error!", 0);
 			}
 		}
 
@@ -66,5 +85,58 @@ public class AutoDownload : MonoBehaviour
 		}
 		headerText.text = "Loading menu...";
 		SceneManager.LoadScene(1);
+	}
+
+	public void SetupKARphin()
+	{
+		StartCoroutine(KARphinSetup());
+	}
+	
+	IEnumerator KARphinSetup()
+	{
+		headerText.text = "Setting up KARphin...";
+		yield return new WaitForSeconds(0.01f);
+		DirectoryInfo installDir = new DirectoryInfo(System.Environment.CurrentDirectory);
+
+		try
+		{
+			//nukes the whole User folder
+			DirectoryInfo netplay = KWStructure.GenerateKWStructure_Directory_NetplayClients(installDir);
+			if (netplay.Exists)
+			{
+				netplay.Delete(true);
+				netplay = KWStructure.GenerateKWStructure_Directory_NetplayClients(installDir);
+			}
+
+			//gets the client deps
+			KWQICommonInstalls.GetLatest_ClientDeps(netplay);
+
+			//gets the Gekko Codes
+			KWQICommonInstalls.GetLatest_GekkoCodes_Backside(KWStructure.GenerateKWStructure_SubDirectory_Clients_User_GameSettings(installDir));
+			KWQICommonInstalls.GetLatest_GekkoCodes_HackPack(KWStructure.GenerateKWStructure_SubDirectory_Clients_User_GameSettings(installDir));
+
+			//generate Dolphin config
+			string config = "[Analytics]\nID = 9fbc80be625d265e9c906466779b9cec\n[NetPlay]\nTraversalChoice = traversal\nChunkedUploadLimit = 0x00000bb8\nConnectPort = 0x0a42\nEnableChunkedUploadLimit = False\nHostCode = 00000000\nHostPort = 0x0a42\nIndexName = KAR\nIndexPassword = \nIndexRegion = NA\nNickname = Kirby\nUseIndex = True\nUseUPNP = False\n[Display]\nDisableScreenSaver = True\n[General]\nHotkeysRequireFocus = True\nISOPath0 = " +
+			                installDir + "/ROMs\nISOPaths = 1\n[Interface]\nConfirmStop = True\nOnScreenDisplayMessages = True\nShowActiveTitle = True\nUseBuiltinTitleDatabase = True\nUsePanicHandlers = True\n[Core]\nAudioLatency = 20\nAudioStretch = False\nAudioStretchMaxLatency = 80\nDPL2Decoder = False\nDPL2Quality = 2\nDSPHLE = True\n[DSP]\nEnableJIT = False\nVolume = 100\nBackend = OpenAL\nWASAPIDevice = ";
+		
+			DirectoryInfo configFolder = new DirectoryInfo(KWStructure.GenerateKWStructure_SubDirectory_Clients_User(installDir) + "/Config");
+			configFolder.Create();
+
+			System.IO.StreamWriter file = new System.IO.StreamWriter(
+				configFolder.FullName + "/Dolphin.ini");
+			file.Write(config);
+			file.Close();
+
+			//gets KARphin
+			KWQICommonInstalls.GetLatest_KARphin(netplay);
+		}
+		catch (Exception e)
+		{
+			UnityEngine.Debug.LogError(e);
+			MainUI.instance.sfx.PlayOneShot(MainUI.instance.menu[4]);
+			MessageUI.MessageBox(IntPtr.Zero, e.ToString(), "Download Failed!", 0);
+		}
+
+		RunCoroutines();
 	}
 }

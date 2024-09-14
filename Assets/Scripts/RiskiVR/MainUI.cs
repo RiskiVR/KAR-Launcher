@@ -105,9 +105,10 @@ public class MainUI : MonoBehaviour
         discAnim.SetTrigger("anim2");
         discAnim.SetBool("anim", show); 
     }
-    public class MessageUI
-    {
-        [DllImport("user32.dll", CharSet = CharSet.Auto)]
-        public static extern int MessageBox(IntPtr hWnd, String text, String caption, int options);
-    }
+    
+}
+public class MessageUI
+{
+    [DllImport("user32.dll", CharSet = CharSet.Auto)]
+    public static extern int MessageBox(IntPtr hWnd, String text, String caption, int options);
 }

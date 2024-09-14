@@ -194,7 +194,7 @@ class KWQICommonInstalls
             {
                 UnityEngine.Debug.LogError(ex);
                 MainUI.instance.sfx.PlayOneShot(MainUI.instance.menu[4]);
-                MainUI.MessageUI.MessageBox(IntPtr.Zero, ex.ToString(), "Download Failed!", 0);
+                MessageUI.MessageBox(IntPtr.Zero, ex.ToString(), "Download Failed!", 0);
             }
         }
         
