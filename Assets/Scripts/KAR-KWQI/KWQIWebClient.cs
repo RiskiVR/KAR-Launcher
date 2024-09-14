@@ -9,10 +9,25 @@ https://github.com/SeanMott/KAR-KWQI
 using System;
 using System.IO;
 using System.Net;
+using System.Text;
 
 //defines a common class for Web Client implementations for KWQI
 class KWQIWebClient
 {
+    //check if the current version is the same as the latest git release
+    static public bool CheckVersion_GitRelease(string author, string repo, string currentVersion)
+    {
+        string GitHub = "https://api.github.com/repos/" + author + "/" + repo + "/releases";
+        string lazyTag = $"\"tag_name\": \"{currentVersion}\"";
+        WebClient web = new WebClient();
+        web.Headers["Content-Type"] = "application/json";
+        web.Headers.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:87.0) Gecko/20100101 Firefox/87.0");
+        web.Encoding = Encoding.UTF8;
+        string incomingData = web.DownloadString(GitHub);
+
+        return incomingData.Contains(lazyTag);
+    }
+
     //downloads a Archive on Windows (async)
 
 	//downloads a Archive on Windows (NOT ASYNC) || returns the Archive it downloaded
