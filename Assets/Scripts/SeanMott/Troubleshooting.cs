@@ -21,7 +21,7 @@ public class Troubleshooting : MonoBehaviour
             }
 
             //downloads
-            KWQICommonInstalls.GetLatest_KARUpdater();
+            KWQICommonInstalls.GetLatest_KARUpdater(installDir);
 		
             //runs the Updater
             var updater = new System.Diagnostics.Process();

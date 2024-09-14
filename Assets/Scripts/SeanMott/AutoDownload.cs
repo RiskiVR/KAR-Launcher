@@ -23,11 +23,23 @@ public class AutoDownload : MonoBehaviour
 
 	public void RunCoroutines()
 	{
+		//performs a boot updater check
+		StartCoroutine(BootDL());
+		
 		//performs a launcher check
 		StartCoroutine(LauncherDL());
 
 		//performs a KARphin update
 		StartCoroutine(KARphinDL());
+	}
+	
+	//checks if the boot updater exists
+	IEnumerator BootDL()
+	{
+		headerText.text = "Checking for Boot Updater updates...";
+		yield return new WaitForSeconds(0.01f);
+		DirectoryInfo installDir = new DirectoryInfo(System.Environment.CurrentDirectory);
+		KWQICommonInstalls.GetLatest_BootUpdater(installDir);
 	}
 	
 	//checks that the launcher is at the latest
