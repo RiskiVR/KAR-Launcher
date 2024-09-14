@@ -10,7 +10,21 @@ using UnityEngine.SceneManagement;
 public class AutoDownload : MonoBehaviour
 {
 	[SerializeField] TextMeshProUGUI headerText;
-	void Awake() => StartCoroutine(Download());
+	void Awake()
+	{
+		//checks that the launcher is at the latest
+		System.Diagnostics.Process updater = new System.Diagnostics.Process();
+		updater.StartInfo.FileName = new DirectoryInfo(System.Environment.CurrentDirectory).FullName + "/KAR_BootUpdate.exe";
+		updater.StartInfo.WorkingDirectory = new DirectoryInfo(System.Environment.CurrentDirectory).FullName;
+        updater.StartInfo.Arguments = "-launcher " + Application.version;
+        updater.Start();
+		updater.WaitForExit();
+
+        //performs a KARphin update
+        StartCoroutine(Download());
+    }
+
+	//performs a download of KARphin
 	IEnumerator Download()
 	{
 		headerText.text = "Checking for updates...";
