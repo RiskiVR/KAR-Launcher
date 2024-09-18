@@ -76,8 +76,9 @@ public class Netplay : MonoBehaviour
 			//boots the client
 			var dolphin = new Process();
 			dolphin.StartInfo.FileName = client.FullName;
-			dolphin.StartInfo.WorkingDirectory = clientsFolder.FullName;
-			dolphin.Start();
+			dolphin.StartInfo.WorkingDirectory = (clientNames[currentClient] == "KARphin_Legacy" ? clientsFolder.FullName + "/Legacy" : clientsFolder.FullName);
+
+            dolphin.Start();
 		}
 		catch (Exception e)
 		{
@@ -118,16 +119,16 @@ public class Netplay : MonoBehaviour
 			KWQICommonInstalls.GetLatest_GekkoCodes_HackPack(KWStructure.GenerateKWStructure_SubDirectory_Clients_User_GameSettings(installDir));
 
 			//generate Dolphin config
-			string config = "[Analytics]\nID = 9fbc80be625d265e9c906466779b9cec\n[NetPlay]\nTraversalChoice = traversal\nChunkedUploadLimit = 0x00000bb8\nConnectPort = 0x0a42\nEnableChunkedUploadLimit = False\nHostCode = 00000000\nHostPort = 0x0a42\nIndexName = KAR\nIndexPassword = \nIndexRegion = NA\nNickname = Kirby\nUseIndex = True\nUseUPNP = False\n[Display]\nDisableScreenSaver = True\n[General]\nHotkeysRequireFocus = True\nISOPath0 = " +
-			                installDir + "/ROMs\nISOPaths = 1\n[Interface]\nConfirmStop = True\nOnScreenDisplayMessages = True\nShowActiveTitle = True\nUseBuiltinTitleDatabase = True\nUsePanicHandlers = True\n[Core]\nAudioLatency = 20\nAudioStretch = False\nAudioStretchMaxLatency = 80\nDPL2Decoder = False\nDPL2Quality = 2\nDSPHLE = True\n[DSP]\nEnableJIT = False\nVolume = 100\nBackend = OpenAL\nWASAPIDevice = ";
+			//string config = "[Analytics]\nID = 9fbc80be625d265e9c906466779b9cec\n[NetPlay]\nTraversalChoice = traversal\nChunkedUploadLimit = 0x00000bb8\nConnectPort = 0x0a42\nEnableChunkedUploadLimit = False\nHostCode = 00000000\nHostPort = 0x0a42\nIndexName = KAR\nIndexPassword = \nIndexRegion = NA\nNickname = Kirby\nUseIndex = True\nUseUPNP = False\n[Display]\nDisableScreenSaver = True\n[General]\nHotkeysRequireFocus = True\nISOPath0 = " +
+			//                installDir + "/ROMs\nISOPaths = 1\n[Interface]\nConfirmStop = True\nOnScreenDisplayMessages = True\nShowActiveTitle = True\nUseBuiltinTitleDatabase = True\nUsePanicHandlers = True\n[Core]\nAudioLatency = 20\nAudioStretch = False\nAudioStretchMaxLatency = 80\nDPL2Decoder = False\nDPL2Quality = 2\nDSPHLE = True\n[DSP]\nEnableJIT = False\nVolume = 100\nBackend = OpenAL\nWASAPIDevice = ";
 		
-			DirectoryInfo configFolder = new DirectoryInfo(KWStructure.GenerateKWStructure_SubDirectory_Clients_User(installDir) + "/Config");
-			configFolder.Create();
-
-			System.IO.StreamWriter file = new System.IO.StreamWriter(
-				configFolder.FullName + "/Dolphin.ini");
-			file.Write(config);
-			file.Close();
+			//DirectoryInfo configFolder = new DirectoryInfo(KWStructure.GenerateKWStructure_SubDirectory_Clients_User(installDir) + "/Config");
+			//configFolder.Create();
+			//
+			//System.IO.StreamWriter file = new System.IO.StreamWriter(
+			//	configFolder.FullName + "/Dolphin.ini");
+			//file.Write(config);
+			//file.Close();
 
 			//gets KARphin
 			KWQICommonInstalls.GetLatest_KARphin(netplay);
