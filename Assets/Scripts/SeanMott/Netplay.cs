@@ -81,7 +81,7 @@ public class Netplay : MonoBehaviour
 			//boots the client
 			var dolphin = new Process();
 			dolphin.StartInfo.FileName = client.FullName;
-			dolphin.StartInfo.Arguments = args;
+			dolphin.StartInfo.Arguments = (clientNames[currentClient] == "KARphin_Legacy" ? "" : args);
 			dolphin.StartInfo.WorkingDirectory = (clientNames[currentClient] == "KARphin_Legacy" ? clientsFolder.FullName + "/Legacy" : clientsFolder.FullName);
 
             dolphin.Start();
