@@ -18,9 +18,14 @@ public class Netplay : MonoBehaviour
 	void BootClient(string args = "")
 	{
 		DirectoryInfo installDir = new DirectoryInfo(System.Environment.CurrentDirectory);
-		//DirectoryInfo installDir = new DirectoryInfo("C:/Users/rafal/Desktop/Boot test/KARNetplay");
+        //DirectoryInfo installDir = new DirectoryInfo("C:/Users/rafal/Desktop/Boot test/KARNetplay");
 
-		try
+        //validate the Replay folder, for storing the game replays exists
+        DirectoryInfo replayDir = new DirectoryInfo(installDir + "/Replays");
+		if (!replayDir.Exists)
+			replayDir.Create();
+
+        try
 		{
 			//checks if the client exists
 			DirectoryInfo clientsFolder = KWStructure.GenerateKWStructure_Directory_NetplayClients(installDir);
