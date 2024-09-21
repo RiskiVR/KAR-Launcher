@@ -15,7 +15,7 @@ public class Netplay : MonoBehaviour
 	public static int currentClient = 0;
 
 	//attempts to boot the chosen client
-	void BootClient()
+	void BootClient(string args = "")
 	{
 		DirectoryInfo installDir = new DirectoryInfo(System.Environment.CurrentDirectory);
 		//DirectoryInfo installDir = new DirectoryInfo("C:/Users/rafal/Desktop/Boot test/KARNetplay");
@@ -76,6 +76,7 @@ public class Netplay : MonoBehaviour
 			//boots the client
 			var dolphin = new Process();
 			dolphin.StartInfo.FileName = client.FullName;
+			dolphin.StartInfo.Arguments = args;
 			dolphin.StartInfo.WorkingDirectory = (clientNames[currentClient] == "KARphin_Legacy" ? clientsFolder.FullName + "/Legacy" : clientsFolder.FullName);
 
             dolphin.Start();
@@ -144,13 +145,13 @@ public class Netplay : MonoBehaviour
 	//joins a match
 	public void _on_join_match_pressed()
 	{
-		BootClient();
+		BootClient("--netBrowser f");
 	}
 
 	//hosts a match
 	public void _on_host_match_pressed()
 	{
-		BootClient();
+		BootClient("--netHost f");
 	}
 
 	public void _set_karphin_client(int client)
