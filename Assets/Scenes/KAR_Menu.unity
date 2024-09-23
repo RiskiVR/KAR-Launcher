@@ -4385,7 +4385,6 @@ GameObject:
   - component: {fileID: 353209643}
   - component: {fileID: 353209642}
   - component: {fileID: 353209641}
-  - component: {fileID: 353209640}
   - component: {fileID: 353209637}
   - component: {fileID: 353209639}
   - component: {fileID: 353209638}
@@ -4464,10 +4463,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 172951760}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 2074404516}
+        m_TargetAssemblyTypeName: GeckoCodes, Assembly-CSharp
+        m_MethodName: DownloadNACodes
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4509,19 +4508,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &353209640
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 353209636}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eeac486195518194689e7b35cd625377, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  info: Select KARphin client.
 --- !u!114 &353209641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4534,7 +4520,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88ed63b86ed971b4e92fbc4a67a6861d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  info: 
+  info: Download/Reset Vanilla North American Gecko codes
 --- !u!222 &353209642
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6915,7 +6901,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Reset Client Data
+  m_text: Hack Pack
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 21df2412e47e76944935088b99dd12da, type: 2}
   m_sharedMaterial: {fileID: -2196467177333949917, guid: 21df2412e47e76944935088b99dd12da, type: 2}
@@ -7324,7 +7310,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Join Game
+  m_text: Vanilla JP
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 21df2412e47e76944935088b99dd12da, type: 2}
   m_sharedMaterial: {fileID: -2196467177333949917, guid: 21df2412e47e76944935088b99dd12da, type: 2}
@@ -8112,9 +8098,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2074404514}
-        m_TargetAssemblyTypeName: Netplay, Assembly-CSharp
-        m_MethodName: _on_configure_pressed
+      - m_Target: {fileID: 2074404516}
+        m_TargetAssemblyTypeName: GeckoCodes, Assembly-CSharp
+        m_MethodName: DownloadBSCodes
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8169,7 +8155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88ed63b86ed971b4e92fbc4a67a6861d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  info: Configure your KARphin Client.
+  info: Download/Reset Backside Gecko codes
 --- !u!222 &685898971
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -12893,7 +12879,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Set KARphin Client
+  m_text: Vanilla NA
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 21df2412e47e76944935088b99dd12da, type: 2}
   m_sharedMaterial: {fileID: -2196467177333949917, guid: 21df2412e47e76944935088b99dd12da, type: 2}
@@ -16068,7 +16054,6 @@ GameObject:
   - component: {fileID: 1541486541}
   - component: {fileID: 1541486540}
   - component: {fileID: 1541486536}
-  - component: {fileID: 1541486539}
   - component: {fileID: 1541486538}
   - component: {fileID: 1541486537}
   m_Layer: 5
@@ -16146,10 +16131,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 728378045}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
+      - m_Target: {fileID: 2074404516}
+        m_TargetAssemblyTypeName: GeckoCodes, Assembly-CSharp
+        m_MethodName: DownloadHPCodes
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -16191,66 +16176,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1541486539
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1541486535}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc72c786493e6044da931535235b12eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  headerInfo: 'This action may take a while.
-
-    Are you sure you want to proceed?'
-  onConfirm:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2074404514}
-        m_TargetAssemblyTypeName: Netplay, Assembly-CSharp
-        m_MethodName: _on_reset_client_pressed
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onCancel:
-    m_PersistentCalls:
-      m_Calls: []
-  onEither:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 308378791}
-        m_TargetAssemblyTypeName: ButtonListController, Assembly-CSharp
-        m_MethodName: SetInteractable
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 728378045}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
 --- !u!114 &1541486540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16263,7 +16188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88ed63b86ed971b4e92fbc4a67a6861d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  info: Nukes your Clients folder and reinstalls KARphin.
+  info: Download/Reset Hack Pack Gecko codes
 --- !u!222 &1541486541
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -18614,7 +18539,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Configure Client
+  m_text: Backside
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 21df2412e47e76944935088b99dd12da, type: 2}
   m_sharedMaterial: {fileID: -2196467177333949917, guid: 21df2412e47e76944935088b99dd12da, type: 2}
@@ -20171,9 +20096,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2074404514}
-        m_TargetAssemblyTypeName: Netplay, Assembly-CSharp
-        m_MethodName: _on_join_match_pressed
+      - m_Target: {fileID: 2074404516}
+        m_TargetAssemblyTypeName: GeckoCodes, Assembly-CSharp
+        m_MethodName: DownloadJPCodes
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -20228,7 +20153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88ed63b86ed971b4e92fbc4a67a6861d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  info: Join a game of Kirby Air Ride!
+  info: Download/Reset Vanilla Japanese Gecko codes
 --- !u!222 &1898784358
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -22010,6 +21935,7 @@ GameObject:
   - component: {fileID: 2074404513}
   - component: {fileID: 2074404514}
   - component: {fileID: 2074404515}
+  - component: {fileID: 2074404516}
   m_Layer: 0
   m_Name: Scripts
   m_TagString: Untagged
@@ -22054,6 +21980,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dacc24b80f2c1614f9e22bfa10c5b64e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2074404516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2074404512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8752a5d6fdad895429ac387607c32251, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2082815544

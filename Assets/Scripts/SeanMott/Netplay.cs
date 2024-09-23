@@ -19,12 +19,12 @@ public class Netplay : MonoBehaviour
 	{
 		DirectoryInfo installDir = new DirectoryInfo(System.Environment.CurrentDirectory);
 
-  //      //validate the Replay folder, for storing the game replays exists
-  //      DirectoryInfo replayDir = new DirectoryInfo(installDir + "/Replays");
-		//if (!replayDir.Exists)
-		//	replayDir.Create();
+		//validate the Replay folder, for storing the game replays exists
+		DirectoryInfo replayDir = new DirectoryInfo(installDir + "/Replays");
+		if (!replayDir.Exists)
+			replayDir.Create();
 
-        try
+		try
 		{
 			//checks if the client exists
 			DirectoryInfo clientsFolder = KWStructure.GenerateKWStructure_Directory_NetplayClients(installDir);
