@@ -91,9 +91,10 @@ public class AutoDownload : MonoBehaviour
 			//downloads KARphin
 			KWQICommonInstalls.GetLatest_KARphin(KWStructure.GenerateKWStructure_Directory_NetplayClients(new DirectoryInfo(System.Environment.CurrentDirectory)));
 
-			//updates the build data
-			File.WriteAllText("KARphinBuild.txt", newBuildDate);
-			File.Delete("new_KARphinBuild.txt");
+            //updates the build data
+            File.Delete("new_KARphinBuild.txt");
+            File.WriteAllText("KARphinBuild.txt", newBuildDate);
+			
 		}
 		headerText.text = "Loading menu...";
 		SceneManager.LoadScene(1);
