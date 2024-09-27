@@ -61,27 +61,55 @@ class KWQICommonInstalls
         return true;
     }
 
-    //installs the latest Hack Pack ROM
-
-    //installs the latest Backside ROM
-
     //installs the latest Hack Pack Gekko Codes
-    public static bool GetLatest_GekkoCodes_HackPack(DirectoryInfo installTarget)
+    public static bool GetLatest_GekkoCodes_HackPack(DirectoryInfo installTarget, bool isKARphinModern)
     {
-        //downloads the latest KARphin
-        KWQIWebClient.Download_GekkoCodes_Windows(installTarget,
-			"https://github.com/SeanMott/KARphin_Modern/releases/download/gekko/KHPE01.ini",
-			"KHPE01");
+        //downloads the latest Legacy codes
+        if (!isKARphinModern)
+        {
+            KWQIWebClient.Download_GekkoCodes_Windows(installTarget,
+                "https://github.com/SeanMott/KARphin_Modern/releases/download/gekko/KHPE01.ini",
+                "KHPE01");
+        }
+
+        //modern codes
+        else
+        {
+            KWQIWebClient.Download_GekkoCodes_Windows(installTarget,
+                "https://github.com/SeanMott/KARphin_Modern/releases/download/gekko/KHPE01_Modern.ini",
+                "KHPE01");
+        }
+        
         return true;
     }
 
     //installs the latest Backside Gekko Codes
-    public static bool GetLatest_GekkoCodes_Backside(DirectoryInfo installTarget)
+    public static bool GetLatest_GekkoCodes_Backside(DirectoryInfo installTarget, bool isKARphinModern)
+    {
+        //downloads the latest Legacy
+        if (!isKARphinModern)
+        {
+            KWQIWebClient.Download_GekkoCodes_Windows(installTarget,
+                "https://github.com/SeanMott/KARphin_Modern/releases/download/gekko/KBSE01.ini",
+                "KBSE01");
+        }
+        else
+        {
+            KWQIWebClient.Download_GekkoCodes_Windows(installTarget,
+                "https://github.com/SeanMott/KARphin_Modern/releases/download/gekko/KBSE01_Modern.ini",
+                "KBSE01");
+        }
+
+        return true;
+    }
+
+    //installs the latest Ignition KAR Gekko Codes
+    public static bool GetLatest_GekkoCodes_Ignition(DirectoryInfo installTarget)
     {
         //downloads the latest KARphin
         KWQIWebClient.Download_GekkoCodes_Windows(installTarget,
-			"https://github.com/SeanMott/KARphin_Modern/releases/download/gekko/KBSE01.ini",
-			"KBSE01");
+            "https://github.com/SeanMott/KARphin_Modern/releases/download/gekko/SLAV01.ini",
+            "SLAV01");
         return true;
     }
 

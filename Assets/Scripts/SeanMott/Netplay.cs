@@ -99,39 +99,44 @@ public class Netplay : MonoBehaviour
 		BootClient();
 	}
 
+	//resets a client folder
+	public static void ResetClientFolder()
+	{
+        DirectoryInfo installDir = new DirectoryInfo(System.Environment.CurrentDirectory);
+
+        try
+        {
+            //nukes the whole User folder
+            DirectoryInfo netplay = KWStructure.GenerateKWStructure_Directory_NetplayClients(installDir);
+            if (netplay.Exists)
+            {
+                netplay.Delete(true);
+                netplay = KWStructure.GenerateKWStructure_Directory_NetplayClients(installDir);
+            }
+
+            //gets the client deps
+            KWQICommonInstalls.GetLatest_ClientDeps(netplay);
+
+			//gets the Gekko Codes
+			GeckoCodes.DownloadHPCodes();
+			GeckoCodes.DownloadBSCodes();
+
+            //gets KARphin
+            KWQICommonInstalls.GetLatest_KARphin(netplay);
+        }
+        catch (Exception e)
+        {
+            UnityEngine.Debug.LogError(e);
+            MainUI.instance.sfx.PlayOneShot(MainUI.instance.menu[4]);
+            MessageUI.MessageBox(IntPtr.Zero, e.ToString(), "Download Failed!", 0);
+        }
+    }
 
 	//resets the client data
 	public void _on_reset_client_pressed()
 	{
-		DirectoryInfo installDir = new DirectoryInfo(System.Environment.CurrentDirectory);
-
-		try
-		{
-			//nukes the whole User folder
-			DirectoryInfo netplay = KWStructure.GenerateKWStructure_Directory_NetplayClients(installDir);
-			if (netplay.Exists)
-			{
-				netplay.Delete(true);
-				netplay = KWStructure.GenerateKWStructure_Directory_NetplayClients(installDir);
-			}
-
-			//gets the client deps
-			KWQICommonInstalls.GetLatest_ClientDeps(netplay);
-
-			//gets the Gekko Codes
-			KWQICommonInstalls.GetLatest_GekkoCodes_Backside(KWStructure.GenerateKWStructure_SubDirectory_Clients_User_GameSettings(installDir));
-			KWQICommonInstalls.GetLatest_GekkoCodes_HackPack(KWStructure.GenerateKWStructure_SubDirectory_Clients_User_GameSettings(installDir));
-
-			//gets KARphin
-			KWQICommonInstalls.GetLatest_KARphin(netplay);
-		}
-		catch (Exception e)
-		{
-			UnityEngine.Debug.LogError(e);
-			MainUI.instance.sfx.PlayOneShot(MainUI.instance.menu[4]);
-			MessageUI.MessageBox(IntPtr.Zero, e.ToString(), "Download Failed!", 0);
-		}
-	}
+		ResetClientFolder();
+    }
 
 	//joins a match
 	public void _on_join_match_pressed()
