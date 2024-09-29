@@ -74,42 +74,6 @@ public class AutoDownload : MonoBehaviour
         updater.Start();
         updater.WaitForExit();
 
-  //      //the URL to the build date file for KARphin
-  //      string fileUrl = "https://github.com/SeanMott/KARphin_Modern/releases/download/latest/new_KARphinBuild.txt";
-
-		////gets the file
-		//using (WebClient client = new WebClient())
-		//{
-		//	try
-		//	{
-		//		client.DownloadFile(fileUrl, "new_KARphinBuild.txt");
-		//		Debug.Log("Downloaded the new build date data");
-		//	}
-		//	catch (Exception ex)
-		//	{
-		//		Debug.Log("An error occurred: " + ex.Message);
-		//		MessageUI.MessageBox(IntPtr.Zero, ex.ToString(), "Error!", 0);
-		//	}
-		//}
-
-		////checks if a previous build data file exits
-		//string currentBuild = "";
-		//if(File.Exists("KARphinBuild.txt"))
-		//	currentBuild = File.ReadAllText("KARphinBuild.txt");
-
-		////check the date of the new file and the old file
-		////if the new date is more new, get the new KARphin
-		//string newBuildDate = File.ReadAllText("new_KARphinBuild.txt");
-		//if(newBuildDate != currentBuild)
-		//{
-		//	//downloads KARphin
-		//	KWQICommonInstalls.GetLatest_KARphin(KWStructure.GenerateKWStructure_Directory_NetplayClients(new DirectoryInfo(System.Environment.CurrentDirectory)));
-
-  //          //updates the build data
-  //          File.Delete("new_KARphinBuild.txt");
-  //          File.WriteAllText("KARphinBuild.txt", newBuildDate);
-			
-		//}
 		headerText.text = "Loading menu...";
 		SceneManager.LoadScene(1);
 	}

@@ -245,7 +245,7 @@ class KWQICommonInstalls
     {
         //downloads the latest KARphin
         FileInfo archive = KWQIWebClient.Download_Archive_Windows(installTarget,
-            "https://github.com/SeanMott/KAR-Workshop/releases/latest/download/KARBootUpdater.zip",
+            "https://github.com/KARWorkshop/KARBootUpdater/releases/latest/download/KAR_BootUpdate.zip",
             "KARBootUpater");
 
         //unpacks it
