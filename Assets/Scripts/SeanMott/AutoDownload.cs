@@ -60,41 +60,20 @@ public class AutoDownload : MonoBehaviour
 	{
 		headerText.text = "Checking for KARphin updates...";
 		yield return new WaitForSeconds(0.01f);
-		//the URL to the build date file for KARphin
-		string fileUrl = "https://github.com/SeanMott/KARphin_Modern/releases/download/latest/new_KARphinBuild.txt";
 
-		//gets the file
-		using (WebClient client = new WebClient())
-		{
-			try
-			{
-				client.DownloadFile(fileUrl, "new_KARphinBuild.txt");
-				Debug.Log("Downloaded the new build date data");
-			}
-			catch (Exception ex)
-			{
-				Debug.Log("An error occurred: " + ex.Message);
-				MessageUI.MessageBox(IntPtr.Zero, ex.ToString(), "Error!", 0);
-			}
-		}
+        //checks the currently installed version
+        string currentBuild = "00000";
+        if (File.Exists("KARBuildData.txt"))
+            currentBuild = File.ReadAllText("KARBuildData.txt");
 
-		//checks if a previous build data file exits
-		string currentBuild = "";
-		if(File.Exists("KARphinBuild.txt"))
-			currentBuild = File.ReadAllText("KARphinBuild.txt");
+        //performs a update
+        System.Diagnostics.Process updater = new System.Diagnostics.Process();
+        updater.StartInfo.FileName = new DirectoryInfo(System.Environment.CurrentDirectory).FullName + "/KAR_BootUpdate.exe";
+        updater.StartInfo.WorkingDirectory = new DirectoryInfo(System.Environment.CurrentDirectory).FullName;
+		updater.StartInfo.Arguments = "-KARphin " + currentBuild;
+        updater.Start();
+        updater.WaitForExit();
 
-		//check the date of the new file and the old file
-		//if the new date is more new, get the new KARphin
-		string newBuildDate = File.ReadAllText("new_KARphinBuild.txt");
-		if(newBuildDate != currentBuild)
-		{
-			//downloads KARphin
-			KWQICommonInstalls.GetLatest_KARphin(KWStructure.GenerateKWStructure_Directory_NetplayClients(new DirectoryInfo(System.Environment.CurrentDirectory)));
-
-			//updates the build data
-			File.WriteAllText("KARphinBuild.txt", newBuildDate);
-			File.Delete("new_KARphinBuild.txt");
-		}
 		headerText.text = "Loading menu...";
 		SceneManager.LoadScene(1);
 	}
@@ -112,35 +91,7 @@ public class AutoDownload : MonoBehaviour
 
 		try
 		{
-			//nukes the whole User folder
-			DirectoryInfo netplay = KWStructure.GenerateKWStructure_Directory_NetplayClients(installDir);
-			if (netplay.Exists)
-			{
-				netplay.Delete(true);
-				netplay = KWStructure.GenerateKWStructure_Directory_NetplayClients(installDir);
-			}
-
-			//gets the client deps
-			KWQICommonInstalls.GetLatest_ClientDeps(netplay);
-
-			//gets the Gekko Codes
-			KWQICommonInstalls.GetLatest_GekkoCodes_Backside(KWStructure.GenerateKWStructure_SubDirectory_Clients_User_GameSettings(installDir));
-			KWQICommonInstalls.GetLatest_GekkoCodes_HackPack(KWStructure.GenerateKWStructure_SubDirectory_Clients_User_GameSettings(installDir));
-
-			//generate Dolphin config
-			string config = "[Analytics]\nID = 9fbc80be625d265e9c906466779b9cec\n[NetPlay]\nTraversalChoice = traversal\nChunkedUploadLimit = 0x00000bb8\nConnectPort = 0x0a42\nEnableChunkedUploadLimit = False\nHostCode = 00000000\nHostPort = 0x0a42\nIndexName = KAR\nIndexPassword = \nIndexRegion = NA\nNickname = Kirby\nUseIndex = True\nUseUPNP = False\n[Display]\nDisableScreenSaver = True\n[General]\nHotkeysRequireFocus = True\nISOPath0 = " +
-			                installDir + "/ROMs\nISOPaths = 1\n[Interface]\nConfirmStop = True\nOnScreenDisplayMessages = True\nShowActiveTitle = True\nUseBuiltinTitleDatabase = True\nUsePanicHandlers = True\n[Core]\nAudioLatency = 20\nAudioStretch = False\nAudioStretchMaxLatency = 80\nDPL2Decoder = False\nDPL2Quality = 2\nDSPHLE = True\n[DSP]\nEnableJIT = False\nVolume = 100\nBackend = OpenAL\nWASAPIDevice = ";
-		
-			DirectoryInfo configFolder = new DirectoryInfo(KWStructure.GenerateKWStructure_SubDirectory_Clients_User(installDir) + "/Config");
-			configFolder.Create();
-
-			System.IO.StreamWriter file = new System.IO.StreamWriter(
-				configFolder.FullName + "/Dolphin.ini");
-			file.Write(config);
-			file.Close();
-
-			//gets KARphin
-			KWQICommonInstalls.GetLatest_KARphin(netplay);
+			Netplay.ResetClientFolder();
 		}
 		catch (Exception e)
 		{

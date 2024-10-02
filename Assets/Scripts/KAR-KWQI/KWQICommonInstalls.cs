@@ -20,7 +20,7 @@ class KWQICommonInstalls
     {
         //downloads the latest KARphin
         FileInfo archive = KWQIWebClient.Download_Archive_Windows(installTarget,
-        "https://github.com/SeanMott/KARphin_Modern/releases/download/latest/KARphin.zip",
+        "https://github.com/SeanMott/KARphin_Modern/releases/latest/download/KARphin.zip",
         "KARphin");
 
         //unpacks it
@@ -43,7 +43,7 @@ class KWQICommonInstalls
     {
         //downloads the latest KARphin
         FileInfo archive = KWQIWebClient.Download_Archive_Windows(installTarget,
-        "https://github.com/SeanMott/KARphin_Modern/releases/download/latest-dev/KARphinDev.zip",
+        "https://github.com/SeanMott/KARphin_Modern/releases/latest/download/KARphinDev.zip",
         "KARphinDev");
 
         //unpacks it
@@ -61,27 +61,55 @@ class KWQICommonInstalls
         return true;
     }
 
-    //installs the latest Hack Pack ROM
-
-    //installs the latest Backside ROM
-
     //installs the latest Hack Pack Gekko Codes
-    public static bool GetLatest_GekkoCodes_HackPack(DirectoryInfo installTarget)
+    public static bool GetLatest_GekkoCodes_HackPack(DirectoryInfo installTarget, bool isKARphinModern)
     {
-        //downloads the latest KARphin
-        KWQIWebClient.Download_GekkoCodes_Windows(installTarget,
-			"https://github.com/SeanMott/KARphin_Modern/releases/download/gekko/KHPE01.ini",
-			"KHPE01");
+        //downloads the latest Legacy codes
+        if (!isKARphinModern)
+        {
+            KWQIWebClient.Download_GekkoCodes_Windows(installTarget,
+                "https://github.com/KARWorkshop/KAR-Gecko-ASM/releases/download/L1.0/KHPE01.ini",
+                "KHPE01");
+        }
+
+        //modern codes
+        else
+        {
+            KWQIWebClient.Download_GekkoCodes_Windows(installTarget,
+                "https://github.com/KARWorkshop/KAR-Gecko-ASM/releases/download/K1.0/KHPE01.ini",
+                "KHPE01");
+        }
+        
         return true;
     }
 
     //installs the latest Backside Gekko Codes
-    public static bool GetLatest_GekkoCodes_Backside(DirectoryInfo installTarget)
+    public static bool GetLatest_GekkoCodes_Backside(DirectoryInfo installTarget, bool isKARphinModern)
+    {
+        //downloads the latest Legacy
+        if (!isKARphinModern)
+        {
+            KWQIWebClient.Download_GekkoCodes_Windows(installTarget,
+                "https://github.com/KARWorkshop/KAR-Gecko-ASM/releases/download/L1.0/KBSE01.ini",
+                "KBSE01");
+        }
+        else
+        {
+            KWQIWebClient.Download_GekkoCodes_Windows(installTarget,
+                "https://github.com/KARWorkshop/KAR-Gecko-ASM/releases/download/K1.0/KBSE01.ini",
+                "KBSE01");
+        }
+
+        return true;
+    }
+
+    //installs the latest Ignition KAR Gekko Codes
+    public static bool GetLatest_GekkoCodes_Ignition(DirectoryInfo installTarget)
     {
         //downloads the latest KARphin
         KWQIWebClient.Download_GekkoCodes_Windows(installTarget,
-			"https://github.com/SeanMott/KARphin_Modern/releases/download/gekko/KBSE01.ini",
-			"KBSE01");
+            "https://github.com/KARWorkshop/KAR-Gecko-ASM/releases/download/K1.0/SLAV01.ini",
+            "SLAV01");
         return true;
     }
 
@@ -90,7 +118,7 @@ class KWQICommonInstalls
     {
         //downloads the latest KARphin
         KWQIWebClient.Download_GekkoCodes_Windows(installTarget,
-			"https://github.com/SeanMott/KARphin_Modern/releases/download/gekko/GKYP01.ini",
+            "https://github.com/KARWorkshop/KAR-Gecko-ASM/releases/download/K1.0/GKYP01.ini",
 			"GKYP01");
         return true;
     }
@@ -100,7 +128,7 @@ class KWQICommonInstalls
     {
         //downloads the latest KARphin
         KWQIWebClient.Download_GekkoCodes_Windows(installTarget,
-			"https://github.com/SeanMott/KARphin_Modern/releases/download/gekko/GKYE01.ini",
+            "https://github.com/KARWorkshop/KAR-Gecko-ASM/releases/download/K1.0/GKYE01.ini",
 			"GKYE01");
         return true;
     }
@@ -110,7 +138,7 @@ class KWQICommonInstalls
     {
         //downloads the latest KARphin
         FileInfo archive = KWQIWebClient.Download_Archive_Windows(installTarget,
-            "https://github.com/SeanMott/KAR-Workshop/releases/download/KWQI-Data-Dev/SkinPacks.zip",
+            "https://github.com/KARWorkshop/Skin-Packs/releases/latest/download/SkinPacks_OldB2Method.zip",
             "SkinPacks");
 
         //unpacks it
@@ -133,20 +161,15 @@ class KWQICommonInstalls
     {
         //downloads the latest KARphin
         FileInfo archive = KWQIWebClient.Download_Archive_Windows(installTarget,
-            "https://github.com/SeanMott/KARDont/releases/download/latest/KARDont.zip",
+            "https://github.com/SeanMott/KARDont/releases/latest/download/KARDont.zip",
             "KARDont");
 
         //unpacks it
         DirectoryInfo uncompressed = new DirectoryInfo(installTarget.FullName);
         ZipFile.ExtractToDirectory(archive.FullName, uncompressed.FullName, true);
 
-        //moves the contents into the target directory
-       // KWInstaller.CopyAllDirContents(uncompressed, installTarget);
-      //  KWInstaller.CopyAllDirContents(uncompressed, installTarget);
-
         //clean up
         archive.Delete();
-       // uncompressed.Delete(true);
 
         return true;
     }
@@ -156,7 +179,7 @@ class KWQICommonInstalls
     {
         //downloads the latest KARphin
         FileInfo archive = KWQIWebClient.Download_Archive_Windows(installTarget,
-            "https://github.com/SeanMott/KAR-Workshop/releases/download/KWQI-Data-Dev/ClientDeps.zip",
+            "https://github.com/KARWorkshop/ClientDeps/releases/latest/download/ClientDeps.zip",
 			"ClientDeps");
 
         //unpacks it
@@ -222,7 +245,7 @@ class KWQICommonInstalls
     {
         //downloads the latest KARphin
         FileInfo archive = KWQIWebClient.Download_Archive_Windows(installTarget,
-            "https://github.com/SeanMott/KAR-Workshop/releases/download/KWQI-Data-Dev/KARBootUpdater.zip",
+            "https://github.com/KARWorkshop/KARBootUpdater/releases/latest/download/KAR_BootUpdate.zip",
             "KARBootUpater");
 
         //unpacks it
@@ -244,7 +267,7 @@ class KWQICommonInstalls
     {
         //downloads the latest KARphin
         FileInfo archive = KWQIWebClient.Download_Archive_Windows(installTarget,
-            "https://github.com/SeanMott/KAR-Workshop/releases/download/KWQI-Data-Dev/Tools.zip",
+            "https://github.com/KARWorkshop/Tools/releases/latest/download/Tools.zip",
 			"Tools");
 
         //unpacks it

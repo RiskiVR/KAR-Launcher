@@ -6,19 +6,27 @@ using UnityEngine;
 public class GeckoCodes : MonoBehaviour
 {
     //gets the Hack Pack codes
-    public void DownloadHPCodes()
+    public static void DownloadHPCodes()
     {
         DirectoryInfo installDir = new DirectoryInfo(System.Environment.CurrentDirectory);
-        KWQICommonInstalls.GetLatest_GekkoCodes_HackPack(KWStructure.GenerateKWStructure_SubDirectory_Clients_User_GameSettings(installDir));
-        KWQICommonInstalls.GetLatest_GekkoCodes_HackPack(new DirectoryInfo(KWStructure.GenerateKWStructure_Directory_NetplayClients(installDir).FullName + "/Legacy/User/GameSettings"));
+        KWQICommonInstalls.GetLatest_GekkoCodes_HackPack(KWStructure.GenerateKWStructure_SubDirectory_Clients_User_GameSettings(installDir), true);
+        KWQICommonInstalls.GetLatest_GekkoCodes_HackPack(new DirectoryInfo(KWStructure.GenerateKWStructure_Directory_NetplayClients(installDir).FullName + "/Legacy/User/GameSettings"), false);
     }
 
     //gets the Backside codes
     public static void DownloadBSCodes()
     {
         DirectoryInfo installDir = new DirectoryInfo(System.Environment.CurrentDirectory);
-        KWQICommonInstalls.GetLatest_GekkoCodes_Backside(KWStructure.GenerateKWStructure_SubDirectory_Clients_User_GameSettings(installDir));
-        KWQICommonInstalls.GetLatest_GekkoCodes_Backside(new DirectoryInfo(KWStructure.GenerateKWStructure_Directory_NetplayClients(installDir).FullName + "/Legacy/User/GameSettings"));
+        KWQICommonInstalls.GetLatest_GekkoCodes_Backside(KWStructure.GenerateKWStructure_SubDirectory_Clients_User_GameSettings(installDir), true);
+        KWQICommonInstalls.GetLatest_GekkoCodes_Backside(new DirectoryInfo(KWStructure.GenerateKWStructure_Directory_NetplayClients(installDir).FullName + "/Legacy/User/GameSettings"), false);
+    }
+
+    //gets the Ignition codes
+    public static void DownloadIgnitionCodes()
+    {
+        DirectoryInfo installDir = new DirectoryInfo(System.Environment.CurrentDirectory);
+        KWQICommonInstalls.GetLatest_GekkoCodes_Ignition(KWStructure.GenerateKWStructure_SubDirectory_Clients_User_GameSettings(installDir));
+        KWQICommonInstalls.GetLatest_GekkoCodes_Ignition(new DirectoryInfo(KWStructure.GenerateKWStructure_Directory_NetplayClients(installDir).FullName + "/Legacy/User/GameSettings"));
     }
 
     //gets the Vanilla JP codes
