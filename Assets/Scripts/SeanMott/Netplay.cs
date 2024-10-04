@@ -106,23 +106,33 @@ public class Netplay : MonoBehaviour
 
         try
         {
-            //nukes the whole User folder
-            DirectoryInfo netplay = KWStructure.GenerateKWStructure_Directory_NetplayClients(installDir);
-            if (netplay.Exists)
-            {
-                netplay.Delete(true);
-                netplay = KWStructure.GenerateKWStructure_Directory_NetplayClients(installDir);
-            }
+			//runs the boot updater
+			Process process = new Process();
+			process.StartInfo.FileName = installDir.FullName + "/KAR_BootUpdate";
+			process.StartInfo.Arguments = "-resetClient";
+			process.Start();
+			process.WaitForExit();
 
-            //gets the client deps
-            KWQICommonInstalls.GetLatest_ClientDeps(netplay);
+			////validates if KARphin is open and closes it
 
-			//gets the Gekko Codes
-			GeckoCodes.DownloadHPCodes();
-			GeckoCodes.DownloadBSCodes();
 
-            //gets KARphin
-            KWQICommonInstalls.GetLatest_KARphin(netplay);
+   //         //nukes the whole User folder
+   //         DirectoryInfo netplay = KWStructure.GenerateKWStructure_Directory_NetplayClients(installDir);
+   //         if (netplay.Exists)
+   //         {
+   //             netplay.Delete(true);
+   //             netplay = KWStructure.GenerateKWStructure_Directory_NetplayClients(installDir);
+   //         }
+
+   //         //gets the client deps
+   //         KWQICommonInstalls.GetLatest_ClientDeps(netplay);
+
+			////gets the Gekko Codes
+			//GeckoCodes.DownloadHPCodes();
+			//GeckoCodes.DownloadBSCodes();
+
+   //         //gets KARphin
+   //         KWQICommonInstalls.GetLatest_KARphin(netplay);
         }
         catch (Exception e)
         {
