@@ -2,7 +2,6 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using UnityEngine;
-using static UnityEngine.UIElements.UxmlAttributeDescription;
 
 public class Netplay : MonoBehaviour
 {
@@ -14,8 +13,8 @@ public class Netplay : MonoBehaviour
 	};
 	public static int currentClient = 0;
 
-	//attempts to boot the chosen client
-	void BootClient(string args = "")
+    //attempts to boot the chosen client
+    void BootClient(string args = "")
 	{
 		DirectoryInfo installDir = new DirectoryInfo(System.Environment.CurrentDirectory);
 
@@ -50,16 +49,6 @@ public class Netplay : MonoBehaviour
 					
                     break;
 
-                case "KARphin_Legacy":
-                    client = new FileInfo(clientsFolder.FullName + "/Legacy/KARphin_Legacy.exe");
-                    if (!client.Exists) //if it doesn't exist we download it
-                    {
-                        System.Console.WriteLine($"{client.FullName}");
-                        System.Console.WriteLine($"{clientNames[currentClient]} does not exist, can not boot.");
-                        return;
-                    }
-                    break;
-
                 case "KARphinDev":
                     client = new FileInfo(clientsFolder.FullName + "/KARphinDev.exe");
                     if (!client.Exists) //if it doesn't exist we download it
@@ -80,8 +69,8 @@ public class Netplay : MonoBehaviour
 			//boots the client
 			var dolphin = new Process();
 			dolphin.StartInfo.FileName = client.FullName;
-			dolphin.StartInfo.Arguments = (clientNames[currentClient] == "KARphin_Legacy" ? "" : args);
-			dolphin.StartInfo.WorkingDirectory = (clientNames[currentClient] == "KARphin_Legacy" ? clientsFolder.FullName + "/Legacy" : clientsFolder.FullName);
+            dolphin.StartInfo.Arguments = " -u \"" + installDir + "/Clients/User\" " + args;
+            dolphin.StartInfo.WorkingDirectory = clientsFolder.FullName;
 
             dolphin.Start();
 		}
@@ -158,7 +147,7 @@ public class Netplay : MonoBehaviour
 	public void _on_host_match_pressed()
 	{
 		BootClient("--netHost f");
-	}
+    }
 
 	public void _set_karphin_client(int client)
 	{
