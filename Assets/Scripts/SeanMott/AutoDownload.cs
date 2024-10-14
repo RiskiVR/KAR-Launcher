@@ -50,7 +50,7 @@ public class AutoDownload : MonoBehaviour
 		System.Diagnostics.Process updater = new System.Diagnostics.Process();
 		updater.StartInfo.FileName = new DirectoryInfo(System.Environment.CurrentDirectory).FullName + "/KAR_BootUpdate.exe";
 		updater.StartInfo.WorkingDirectory = new DirectoryInfo(System.Environment.CurrentDirectory).FullName;
-		updater.StartInfo.Arguments = "-setVer " + Application.version + "-launcher ";
+		updater.StartInfo.Arguments = "-setVer " + Application.version + " -launcher";
 		updater.Start();
 		updater.WaitForExit();
 	}
