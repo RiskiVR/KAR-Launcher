@@ -5,7 +5,7 @@ using System.Net;
 using UnityEngine;
 
 //handles the bootloader and updating various aspects outside the launcher
-public class BootLoader : MonoBehaviour
+public class BootLoader
 {
     //checks for the bootloader and if not updates it
     static public FileInfo GetBootLoader()
@@ -13,12 +13,6 @@ public class BootLoader : MonoBehaviour
         //gets the bootloader and check if it is missing
         string bootloaderFP = System.Environment.CurrentDirectory + "/Tools/Bootloader.exe";
         bool needsNewBootLoader = !File.Exists(bootloaderFP);
-
-        //check the version
-        if(!needsNewBootLoader)
-        {
-            //invoke bootloader to check it's own versioning
-        }
 
         //if we need a new bootloader
         if(needsNewBootLoader)
@@ -28,14 +22,15 @@ public class BootLoader : MonoBehaviour
             {
                 try
                 {
+                    string zipFP = System.Environment.CurrentDirectory + "/Tools.zip";
                     client.DownloadFile("https://github.com/KARWorkshop/KARBootUpdater/releases/latest/download/Bootloader_Win.zip",
-                        System.Environment.CurrentDirectory + "/Tools.zip");
+                        zipFP);
 
                     //unzips the package
-                    ZipFile.ExtractToDirectory(System.Environment.CurrentDirectory + "/Tools.zip", System.Environment.CurrentDirectory + "/Tools");
+                    ZipFile.ExtractToDirectory(zipFP, System.Environment.CurrentDirectory + "/Tools");
 
                     //deletes the package
-                    File.Delete(System.Environment.CurrentDirectory + "/Tools.zip");
+                    File.Delete(zipFP);
 
                 }
                 catch (Exception ex)
@@ -50,20 +45,19 @@ public class BootLoader : MonoBehaviour
     }
 
     //updates the launcher
+    public static void UpdateLauncher()
+    {
+        FileInfo bootloader = GetBootLoader();
+
+        System.Diagnostics.Process process = new System.Diagnostics.Process();
+        process.StartInfo.FileName = bootloader.FullName;
+        process.StartInfo.WorkingDirectory = System.Environment.CurrentDirectory;
+        process.StartInfo.Arguments = "-setVer " + Application.version + " -installDir " + System.Environment.CurrentDirectory + " -boot -launcher";
+        process.Start();
+        process.WaitForExit();
+    }
 
     //performs a fresh install of KARphin
 
     //checks and installs visual C++ redistribution if needed
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
