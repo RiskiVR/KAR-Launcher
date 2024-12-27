@@ -55,6 +55,9 @@ public class AutoDownload : MonoBehaviour
         //updater.StartInfo.Arguments = "-setVer " + Application.version + " -launcher";
         //updater.Start();
         //updater.WaitForExit();
+
+        headerText.text = "Loading menu...";
+        SceneManager.LoadScene(1);
     }
 
     //performs a download of KARphin
