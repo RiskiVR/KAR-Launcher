@@ -31,7 +31,7 @@ public class AutoDownload : MonoBehaviour
 		StartCoroutine(LauncherDL());
 
 		//performs a KARphin update
-		StartCoroutine(KARphinDL());
+		//StartCoroutine(KARphinDL());
 	}
 	
 	//checks if the boot updater exists
@@ -39,47 +39,48 @@ public class AutoDownload : MonoBehaviour
 	{
 		headerText.text = "Checking for Boot Updater updates...";
 		yield return new WaitForSeconds(0.01f);
-		DirectoryInfo installDir = new DirectoryInfo(System.Environment.CurrentDirectory);
-		//KWQICommonInstalls.GetLatest_BootUpdater(installDir);
-	}
-	
-	//checks that the launcher is at the latest
-	IEnumerator LauncherDL()
+		BootLoader.GetBootLoader();
+    }
+
+    //checks that the launcher is at the latest
+    IEnumerator LauncherDL()
 	{
 		headerText.text = "Checking for Launcher updates...";
 		yield return new WaitForSeconds(0.01f);
-		System.Diagnostics.Process updater = new System.Diagnostics.Process();
-		updater.StartInfo.FileName = new DirectoryInfo(System.Environment.CurrentDirectory).FullName + "/KAR_BootUpdate.exe";
-		updater.StartInfo.WorkingDirectory = new DirectoryInfo(System.Environment.CurrentDirectory).FullName;
-		updater.StartInfo.Arguments = "-setVer " + Application.version + " -launcher";
-		updater.Start();
-		updater.WaitForExit();
-	}
+        //LaunchBootLoader.GetLatest_Launcher();
 
-	//performs a download of KARphin
-	IEnumerator KARphinDL()
-	{
-		headerText.text = "Checking for KARphin updates...";
-		yield return new WaitForSeconds(0.01f);
+        //System.Diagnostics.Process updater = new System.Diagnostics.Process();
+        //updater.StartInfo.FileName = new DirectoryInfo(System.Environment.CurrentDirectory).FullName + "/KAR_BootUpdate.exe";
+        //updater.StartInfo.WorkingDirectory = new DirectoryInfo(System.Environment.CurrentDirectory).FullName;
+        //updater.StartInfo.Arguments = "-setVer " + Application.version + " -launcher";
+        //updater.Start();
+        //updater.WaitForExit();
+    }
 
-        //checks the currently installed version
-        string currentBuild = "00000";
-        if (File.Exists("KARBuildData.txt"))
-            currentBuild = File.ReadAllText("KARBuildData.txt");
+    //performs a download of KARphin
+    //IEnumerator KARphinDL()
+    //{
+    //	headerText.text = "Checking for KARphin updates...";
+    //	yield return new WaitForSeconds(0.01f);
 
-        //performs a update
-        System.Diagnostics.Process updater = new System.Diagnostics.Process();
-        updater.StartInfo.FileName = new DirectoryInfo(System.Environment.CurrentDirectory).FullName + "/KAR_BootUpdate.exe";
-        updater.StartInfo.WorkingDirectory = new DirectoryInfo(System.Environment.CurrentDirectory).FullName;
-		updater.StartInfo.Arguments = "-setVer " + currentBuild + " -KARphin";
-        updater.Start();
-        updater.WaitForExit();
+    //	//checks the currently installed version
+    //	string currentBuild = "00000";
+    //	if (File.Exists("KARBuildData.txt"))
+    //		currentBuild = File.ReadAllText("KARBuildData.txt");
 
-		headerText.text = "Loading menu...";
-		SceneManager.LoadScene(1);
-	}
+    //	//performs a update
+    //	System.Diagnostics.Process updater = new System.Diagnostics.Process();
+    //	updater.StartInfo.FileName = new DirectoryInfo(System.Environment.CurrentDirectory).FullName + "/KAR_BootUpdate.exe";
+    //	updater.StartInfo.WorkingDirectory = new DirectoryInfo(System.Environment.CurrentDirectory).FullName;
+    //	updater.StartInfo.Arguments = "-setVer " + currentBuild + " -KARphin";
+    //	updater.Start();
+    //	updater.WaitForExit();
 
-	public void SetupKARphin()
+    //	headerText.text = "Loading menu...";
+    //	SceneManager.LoadScene(1);
+    //}
+
+    public void SetupKARphin()
 	{
 		StartCoroutine(KARphinSetup());
 	}
@@ -88,7 +89,7 @@ public class AutoDownload : MonoBehaviour
 	{
 		headerText.text = "Setting up KARphin...";
 		yield return new WaitForSeconds(0.01f);
-		DirectoryInfo installDir = new DirectoryInfo(System.Environment.CurrentDirectory);
+		//DirectoryInfo installDir = new DirectoryInfo(System.Environment.CurrentDirectory);
 
 		try
 		{

@@ -5,18 +5,18 @@ using UnityEngine;
 
 public class Troubleshooting : MonoBehaviour
 {
-    
-    
     public void InvokeVCInstaller()
     {
-        DirectoryInfo installDir = new DirectoryInfo(System.Environment.CurrentDirectory);
+        //DirectoryInfo installDir = new DirectoryInfo(System.Environment.CurrentDirectory);
         
         try
         {
-            var installer = new Process();
+           //LaunchBootLoader.Invoke_UpdateVSDistribution();
+
+           // var installer = new Process();
            // installer.StartInfo.FileName = KWStructure.GenerateKWStructure_Directory_Tools(installDir).FullName + "/Windows/VC_redist.x64.exe";
-            installer.StartInfo.WorkingDirectory = installDir.FullName;
-            installer.Start();
+           // installer.StartInfo.WorkingDirectory = installDir.FullName;
+           // installer.Start();
         }
         catch (Exception e)
         {
