@@ -26,7 +26,7 @@ public class Netplay : MonoBehaviour
 		try
 		{
 			//checks if the client exists
-			DirectoryInfo clientsFolder = KWStructure.GenerateKWStructure_Directory_NetplayClients(installDir);
+			DirectoryInfo clientsFolder = new DirectoryInfo(""); //KWStructure.GenerateKWStructure_Directory_NetplayClients(installDir);
 
 			//gets the correct client
 			FileInfo client = new FileInfo(clientsFolder.FullName);
@@ -36,7 +36,7 @@ public class Netplay : MonoBehaviour
 					client = new FileInfo(clientsFolder.FullName + "/KARphin.exe");
 					if (!client.Exists) //if it doesn't exist we download it
 					{
-                        KWQICommonInstalls.GetLatest_KARphin(KWStructure.GenerateKWStructure_Directory_NetplayClients(installDir));
+                       // KWQICommonInstalls.GetLatest_KARphin(KWStructure.GenerateKWStructure_Directory_NetplayClients(installDir));
 
                         client = new FileInfo(clientsFolder.FullName + "/KARphin.exe");
                         if (!client.Exists)
@@ -53,7 +53,7 @@ public class Netplay : MonoBehaviour
                     client = new FileInfo(clientsFolder.FullName + "/KARphinDev.exe");
                     if (!client.Exists) //if it doesn't exist we download it
                     {
-                        KWQICommonInstalls.GetLatest_KARphinDev(KWStructure.GenerateKWStructure_Directory_NetplayClients(installDir));
+                       // KWQICommonInstalls.GetLatest_KARphinDev(KWStructure.GenerateKWStructure_Directory_NetplayClients(installDir));
 
                         client = new FileInfo(clientsFolder.FullName + "/KARphinDev.exe");
                         if (!client.Exists)

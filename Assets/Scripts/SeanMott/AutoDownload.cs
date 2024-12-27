@@ -13,7 +13,8 @@ public class AutoDownload : MonoBehaviour
 	[SerializeField] private GameObject buttons;
 	void Awake()
 	{
-		if (Directory.Exists("Clients")) RunCoroutines();
+		if (Directory.Exists("Clients")) 
+			RunCoroutines();
 		else
 		{
 			headerText.text = "There is no KARphin client installed. Set up KARphin?";
@@ -39,7 +40,7 @@ public class AutoDownload : MonoBehaviour
 		headerText.text = "Checking for Boot Updater updates...";
 		yield return new WaitForSeconds(0.01f);
 		DirectoryInfo installDir = new DirectoryInfo(System.Environment.CurrentDirectory);
-		KWQICommonInstalls.GetLatest_BootUpdater(installDir);
+		//KWQICommonInstalls.GetLatest_BootUpdater(installDir);
 	}
 	
 	//checks that the launcher is at the latest
