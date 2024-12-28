@@ -58,6 +58,17 @@ public class BootLoader
     }
 
     //performs a fresh install of KARphin
+    public static void PerformFreshInstall()
+    {
+        FileInfo bootloader = GetBootLoader();
+
+        System.Diagnostics.Process process = new System.Diagnostics.Process();
+        process.StartInfo.FileName = bootloader.FullName;
+        process.StartInfo.WorkingDirectory = System.Environment.CurrentDirectory;
+        process.StartInfo.Arguments = "-installDir " + System.Environment.CurrentDirectory + " -fresh";
+        process.Start();
+        process.WaitForExit();
+    }
 
     //checks and installs visual C++ redistribution if needed
 }

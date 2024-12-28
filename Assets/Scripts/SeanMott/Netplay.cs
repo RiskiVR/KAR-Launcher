@@ -91,41 +91,9 @@ public class Netplay : MonoBehaviour
 	//resets a client folder
 	public static void ResetClientFolder()
 	{
-        //DirectoryInfo installDir = new DirectoryInfo(System.Environment.CurrentDirectory);
-
         try
         {
-            
-
-            //LaunchBootLoader.ResetClientFolder();
-
-                //runs the boot updater
-                //Process process = new Process();
-                //process.StartInfo.FileName = installDir.FullName + "/KAR_BootUpdate";
-                //process.StartInfo.Arguments = "-resetClient";
-                //process.Start();
-                //process.WaitForExit();
-
-                ////validates if KARphin is open and closes it
-
-
-                //         //nukes the whole User folder
-                //         DirectoryInfo netplay = KWStructure.GenerateKWStructure_Directory_NetplayClients(installDir);
-                //         if (netplay.Exists)
-                //         {
-                //             netplay.Delete(true);
-                //             netplay = KWStructure.GenerateKWStructure_Directory_NetplayClients(installDir);
-                //         }
-
-                //         //gets the client deps
-                //         KWQICommonInstalls.GetLatest_ClientDeps(netplay);
-
-                ////gets the Gekko Codes
-                //GeckoCodes.DownloadHPCodes();
-                //GeckoCodes.DownloadBSCodes();
-
-                //         //gets KARphin
-                //         KWQICommonInstalls.GetLatest_KARphin(netplay);
+            BootLoader.PerformFreshInstall();  
         }
         catch (Exception e)
         {

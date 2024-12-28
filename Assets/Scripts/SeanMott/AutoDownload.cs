@@ -22,6 +22,7 @@ public class AutoDownload : MonoBehaviour
         }
     }
 
+    //performs the set up/boot sequence process
     public void SetUpExecute()
     {
         StartCoroutine(Setup());
