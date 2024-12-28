@@ -826,7 +826,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 357832271}
         m_TargetAssemblyTypeName: AutoDownload, Assembly-CSharp
-        m_MethodName: SetupKARphin
+        m_MethodName: SetUpExecute
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

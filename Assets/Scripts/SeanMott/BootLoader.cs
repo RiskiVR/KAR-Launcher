@@ -52,7 +52,7 @@ public class BootLoader
         System.Diagnostics.Process process = new System.Diagnostics.Process();
         process.StartInfo.FileName = bootloader.FullName;
         process.StartInfo.WorkingDirectory = System.Environment.CurrentDirectory;
-        process.StartInfo.Arguments = "-setVer " + Application.version + " -installDir " + System.Environment.CurrentDirectory + " -boot -launcher";
+        process.StartInfo.Arguments = "-ver " + Application.version + " -installDir " + System.Environment.CurrentDirectory + " -boot -launcher";
         process.Start();
         process.WaitForExit();
     }
