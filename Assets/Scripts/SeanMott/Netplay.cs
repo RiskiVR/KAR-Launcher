@@ -8,7 +8,6 @@ public class Netplay : MonoBehaviour
 	//the index array for which Client to launch
 	public static string[] clientNames = {
 		"KARphin",
-		"KARphin_Legacy",
 		"KARphinDev"
 	};
 	public static int currentClient = 0;
@@ -16,29 +15,19 @@ public class Netplay : MonoBehaviour
     //attempts to boot the chosen client
     void BootClient(string args = "")
 	{
-		DirectoryInfo installDir = new DirectoryInfo(System.Environment.CurrentDirectory);
+        //checks if the client exists
+        DirectoryInfo clientsFolder = new DirectoryInfo(System.Environment.CurrentDirectory + "/Clients");
+        FileInfo client = new FileInfo(clientsFolder.FullName + "/KARphin.exe");
 
-		//validate the Replay folder, for storing the game replays exists
-		DirectoryInfo replayDir = new DirectoryInfo(installDir + "/Replays");
-		if (!replayDir.Exists)
-			replayDir.Create();
-
-		try
+        try
 		{
-			//checks if the client exists
-			DirectoryInfo clientsFolder = new DirectoryInfo(""); //KWStructure.GenerateKWStructure_Directory_NetplayClients(installDir);
-
 			//gets the correct client
-			FileInfo client = new FileInfo(clientsFolder.FullName);
 			switch (clientNames[currentClient])
 			{
 				case "KARphin":
 					client = new FileInfo(clientsFolder.FullName + "/KARphin.exe");
 					if (!client.Exists) //if it doesn't exist we download it
 					{
-                       // KWQICommonInstalls.GetLatest_KARphin(KWStructure.GenerateKWStructure_Directory_NetplayClients(installDir));
-
-                        client = new FileInfo(clientsFolder.FullName + "/KARphin.exe");
                         if (!client.Exists)
                         {
                             System.Console.WriteLine($"{client.FullName}");
@@ -53,9 +42,6 @@ public class Netplay : MonoBehaviour
                     client = new FileInfo(clientsFolder.FullName + "/KARphinDev.exe");
                     if (!client.Exists) //if it doesn't exist we download it
                     {
-                       // KWQICommonInstalls.GetLatest_KARphinDev(KWStructure.GenerateKWStructure_Directory_NetplayClients(installDir));
-
-                        client = new FileInfo(clientsFolder.FullName + "/KARphinDev.exe");
                         if (!client.Exists)
                         {
                             System.Console.WriteLine($"{client.FullName}");
@@ -69,7 +55,7 @@ public class Netplay : MonoBehaviour
 			//boots the client
 			var dolphin = new Process();
 			dolphin.StartInfo.FileName = client.FullName;
-            dolphin.StartInfo.Arguments = " -u \"" + installDir + "/Clients/User\" " + args;
+            dolphin.StartInfo.Arguments = " -u \"" + clientsFolder.FullName + "/StarDust_Player_Settings\" " + args;
             dolphin.StartInfo.WorkingDirectory = clientsFolder.FullName;
 
             dolphin.Start();
