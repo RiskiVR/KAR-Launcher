@@ -13,7 +13,7 @@ public class Netplay : MonoBehaviour
 	public static int currentClient = 0;
 
     //attempts to boot the chosen client
-    void BootClient(string args = "")
+    void BootClient(string state)
 	{
         //checks if the client exists
         DirectoryInfo clientsFolder = new DirectoryInfo(System.Environment.CurrentDirectory + "/Clients");
@@ -52,10 +52,13 @@ public class Netplay : MonoBehaviour
                     break;
             }
 
-			//boots the client
-			var dolphin = new Process();
+            //writes the boot mode
+            File.WriteAllText(System.Environment.CurrentDirectory + "/Clients/Boot.state", state);
+
+            //boots the client
+            var dolphin = new Process();
 			dolphin.StartInfo.FileName = client.FullName;
-            dolphin.StartInfo.Arguments = " -u \"" + clientsFolder.FullName + "/StarDust_Player_Settings\" " + args;
+            dolphin.StartInfo.Arguments = " -u \"" + clientsFolder.FullName + "/StarDust_Player_Settings\"";
             dolphin.StartInfo.WorkingDirectory = clientsFolder.FullName;
 
             dolphin.Start();
@@ -66,12 +69,6 @@ public class Netplay : MonoBehaviour
 			MainUI.instance.sfx.PlayOneShot(MainUI.instance.menu[4]);
 			MessageUI.MessageBox(IntPtr.Zero, e.ToString(), "Download Failed!", 0);
 		}
-	}
-
-	//boots client for configuring
-	public void _on_configure_pressed()
-	{
-		BootClient();
 	}
 
 	//resets a client folder
@@ -95,16 +92,22 @@ public class Netplay : MonoBehaviour
 		ResetClientFolder();
     }
 
-	//joins a match
-	public void _on_join_match_pressed()
+    //boots client for configuring
+    public void _on_configure_pressed()
+    {
+        BootClient("None");
+    }
+
+    //joins a match
+    public void _on_join_match_pressed()
 	{
-		BootClient("--netBrowser f");
+        BootClient("Lobby");
 	}
 
 	//hosts a match
 	public void _on_host_match_pressed()
 	{
-		BootClient("--netHost f");
+        BootClient("Host");
     }
 
 	public void _set_karphin_client(int client)
