@@ -44,7 +44,10 @@ public class AutoDownload : MonoBehaviour
         try
         {
             if (!Directory.Exists(System.Environment.CurrentDirectory + "/Clients"))
+            {
+                Directory.CreateDirectory("Clients");
                 Netplay.ResetClientFolder();
+            }
         }
         catch (Exception e)
         {
