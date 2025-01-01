@@ -140,7 +140,7 @@ PlayerSettings:
   loadStoreDebugModeEnabled: 0
   visionOSBundleVersion: 1.0
   tvOSBundleVersion: 1.0
-  bundleVersion: 1.06
+  bundleVersion: 1.07
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -746,8 +746,8 @@ PlayerSettings:
   editorAssembliesCompatibilityLevel: 1
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: KAR Launcher
-  metroPackageVersion: 
+  metroPackageName: KARLauncher
+  metroPackageVersion: 1.0.0.0
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
@@ -755,7 +755,7 @@ PlayerSettings:
   metroCertificateNotAfter: 0000000000000000
   metroApplicationDescription: KAR Launcher
   wsaImages: {}
-  metroTileShortName: 
+  metroTileShortName: KAR Launcher
   metroTileShowName: 0
   metroMediumTileShowName: 0
   metroLargeTileShowName: 0

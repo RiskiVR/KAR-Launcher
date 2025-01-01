@@ -5,18 +5,12 @@ using UnityEngine;
 
 public class Troubleshooting : MonoBehaviour
 {
+    //invokes the vs installer for the redistribution
     public void InvokeVCInstaller()
     {
-        //DirectoryInfo installDir = new DirectoryInfo(System.Environment.CurrentDirectory);
-        
         try
         {
-           //LaunchBootLoader.Invoke_UpdateVSDistribution();
-
-           // var installer = new Process();
-           // installer.StartInfo.FileName = KWStructure.GenerateKWStructure_Directory_Tools(installDir).FullName + "/Windows/VC_redist.x64.exe";
-           // installer.StartInfo.WorkingDirectory = installDir.FullName;
-           // installer.Start();
+            BootLoader.InvokeVSCppRedistribution();
         }
         catch (Exception e)
         {
@@ -24,5 +18,16 @@ public class Troubleshooting : MonoBehaviour
             MainUI.instance.sfx.PlayOneShot(MainUI.instance.menu[4]);
             MessageUI.MessageBox(IntPtr.Zero, e.ToString(), "Download Failed!", 0);
         }
+    }
+
+    //redownloads the tools directory for the bootloader and vs installer
+    public void GetLatestUpdater()
+    {
+        //if the tools directory exists, delete it
+        if (Directory.Exists(System.Environment.CurrentDirectory + "/Tools"))
+            Directory.Delete(System.Environment.CurrentDirectory + "/Tools", true);
+
+        //get the latest bootloader
+        BootLoader.GetBootLoader();
     }
 }
