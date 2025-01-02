@@ -43,7 +43,7 @@ public class AutoDownload : MonoBehaviour
         //checks if we have a valid KARphin build
         try
         {
-            if (!Directory.Exists(System.Environment.CurrentDirectory + "/Clients"))
+            if (!Directory.Exists(Path.Combine(System.Environment.CurrentDirectory, "Clients")))
             {
                 Directory.CreateDirectory("Clients");
                 Netplay.ResetClientFolder();

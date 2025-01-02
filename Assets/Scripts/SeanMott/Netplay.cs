@@ -16,8 +16,8 @@ public class Netplay : MonoBehaviour
     void BootClient(string state)
 	{
         //checks if the client exists
-        DirectoryInfo clientsFolder = new DirectoryInfo(System.Environment.CurrentDirectory + "/Clients");
-        FileInfo client = new FileInfo(clientsFolder.FullName + "/KARphin.exe");
+        DirectoryInfo clientsFolder = new DirectoryInfo(Path.Combine(System.Environment.CurrentDirectory, "Clients"));
+        FileInfo client = new FileInfo(Path.Combine(clientsFolder.FullName, "KARphin.exe"));
 
         try
 		{
@@ -25,7 +25,7 @@ public class Netplay : MonoBehaviour
 			switch (clientNames[currentClient])
 			{
 				case "KARphin":
-					client = new FileInfo(clientsFolder.FullName + "/KARphin.exe");
+					client = new FileInfo(Path.Combine(clientsFolder.FullName, "KARphin.exe"));
 					if (!client.Exists) //if it doesn't exist we download it
 					{
                         if (!client.Exists)
@@ -39,7 +39,7 @@ public class Netplay : MonoBehaviour
                     break;
 
                 case "KARphinDev":
-                    client = new FileInfo(clientsFolder.FullName + "/KARphinDev.exe");
+                    client = new FileInfo(Path.Combine(clientsFolder.FullName, "KARphinDev.exe"));
                     if (!client.Exists) //if it doesn't exist we download it
                     {
                         if (!client.Exists)
@@ -53,12 +53,13 @@ public class Netplay : MonoBehaviour
             }
 
             //writes the boot mode
-            File.WriteAllText(System.Environment.CurrentDirectory + "/Clients/Boot.state", state);
+            File.WriteAllText(Path.Combine(System.Environment.CurrentDirectory, "Clients", "Boot.state"), state);
 
             //boots the client
             var dolphin = new Process();
 			dolphin.StartInfo.FileName = client.FullName;
-            dolphin.StartInfo.Arguments = " -u \"" + clientsFolder.FullName + "/StarDust_Player_Settings\"";
+            dolphin.StartInfo.ArgumentList.Add("-u");
+            dolphin.StartInfo.ArgumentList.Add(Path.Combine(clientsFolder.FullName + "StarDust_Player_Settings"));
             dolphin.StartInfo.WorkingDirectory = clientsFolder.FullName;
 
             dolphin.Start();

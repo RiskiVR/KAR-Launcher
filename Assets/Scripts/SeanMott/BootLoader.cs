@@ -8,11 +8,18 @@ using System.Diagnostics;
 //handles the bootloader and updating various aspects outside the launcher
 public class BootLoader
 {
+    //gets the tools directory
+    static public string GetToolsDirectory()
+    {
+        return Path.Combine(System.Environment.CurrentDirectory, "Tools");
+    }
+
+
     //checks for the bootloader and if not updates it
     static public FileInfo GetBootLoader()
     {
         //gets the bootloader and check if it is missing
-        string bootloaderFP = System.Environment.CurrentDirectory + "/Tools/Bootloader.exe";
+        string bootloaderFP = Path.Combine(GetToolsDirectory(), "Bootloader.exe");
         bool needsNewBootLoader = !File.Exists(bootloaderFP);
 
         //if we need a new bootloader
@@ -23,19 +30,19 @@ public class BootLoader
             {
                 try
                 {
-                    string zipFP = System.Environment.CurrentDirectory + "/Tools.zip";
+                    string zipFP = Path.Combine(System.Environment.CurrentDirectory, "Tools.zip");
                     client.DownloadFile("https://github.com/KARWorkshop/KARBootUpdater/releases/latest/download/Bootloader_Win.zip",
                         zipFP);
 
                     //unzips the package
-                    ZipFile.ExtractToDirectory(zipFP, System.Environment.CurrentDirectory + "/Tools");
+                    ZipFile.ExtractToDirectory(zipFP, Path.Combine(System.Environment.CurrentDirectory, "Tools"));
 
                     //deletes the package
                     File.Delete(zipFP);
 
                     //downloads the VS distribution
                     client.DownloadFile("https://github.com/KARWorkshop/KARphin_StarFall/releases/download/deps/VC_redist.x64.exe",
-                        System.Environment.CurrentDirectory + "/Tools/VSDistInstaller.exe");
+                        Path.Combine(GetToolsDirectory(), "VSDistInstaller.exe"));
 
                 }
                 catch (Exception ex)

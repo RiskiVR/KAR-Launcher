@@ -24,8 +24,8 @@ public class Troubleshooting : MonoBehaviour
     public void GetLatestUpdater()
     {
         //if the tools directory exists, delete it
-        if (Directory.Exists(System.Environment.CurrentDirectory + "/Tools"))
-            Directory.Delete(System.Environment.CurrentDirectory + "/Tools", true);
+        if (Directory.Exists(BootLoader.GetToolsDirectory()))
+            Directory.Delete(BootLoader.GetToolsDirectory(), true);
 
         //get the latest bootloader
         BootLoader.GetBootLoader();
