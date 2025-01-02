@@ -16,7 +16,7 @@ public class Troubleshooting : MonoBehaviour
         {
             UnityEngine.Debug.LogError(e);
             MainUI.instance.sfx.PlayOneShot(MainUI.instance.menu[4]);
-            MessageUI.MessageBox(IntPtr.Zero, e.ToString(), "Download Failed!", 0);
+            MessageUI.MessageBox(IntPtr.Zero, e.ToString(), "Error", 0);
         }
     }
 

@@ -23,22 +23,22 @@ public class AutoDownload : MonoBehaviour
     }
 
     //performs the set up/boot sequence process
-    public void SetUpExecute()
-    {
-        StartCoroutine(Setup());
-    }
+    public void SetUpExecute() => StartCoroutine(Setup());
 
 
 	//checks if the boot updater exists
 	IEnumerator Setup()
 	{
 		headerText.text = "Checking for Boot Updater updates...";
+        yield return new WaitForSeconds(0.01f);
 		BootLoader.GetBootLoader();
 
         headerText.text = "Checking for Launcher updates...";
+        yield return new WaitForSeconds(0.01f);
         BootLoader.UpdateLauncher();
 
         headerText.text = "Setting up KARphin...";
+        yield return new WaitForSeconds(0.01f);
 
         //checks if we have a valid KARphin build
         try
@@ -53,12 +53,12 @@ public class AutoDownload : MonoBehaviour
         {
             UnityEngine.Debug.LogError(e);
             MainUI.instance.sfx.PlayOneShot(MainUI.instance.menu[4]);
-            MessageUI.MessageBox(IntPtr.Zero, e.ToString(), "Download Failed!", 0);
+            MessageUI.MessageBox(IntPtr.Zero, e.ToString(), "Error", 0);
         }
 
         headerText.text = "Loading menu...";
-        SceneManager.LoadScene(1);
-
         yield return new WaitForSeconds(0.01f);
+        SceneManager.LoadScene(1);
     }
+    public void ExitApplication() => Application.Quit();
 }

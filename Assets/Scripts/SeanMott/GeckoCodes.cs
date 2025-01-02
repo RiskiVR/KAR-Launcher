@@ -3,23 +3,9 @@ using System.IO;
 using System.Net;
 using System;
 using UnityEngine;
-using UnityEditor.PackageManager;
-using UnityEditor.Search;
 
 public class GeckoCodes : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     //validates the gecko code directory
     static string ValidateGeckoCodeDirectory()
     {
@@ -47,9 +33,11 @@ public class GeckoCodes : MonoBehaviour
                 client.DownloadFile("https://github.com/KARWorkshop/KAR-Gecko-ASM/releases/download/stardust/KHPE01.ini",
                     Path.Combine(ValidateGeckoCodeDirectory(), "KHPE01.ini"));
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                Console.WriteLine("An error occurred: " + ex.Message);
+                UnityEngine.Debug.LogError(e);
+                MainUI.instance.sfx.PlayOneShot(MainUI.instance.menu[4]);
+                MessageUI.MessageBox(IntPtr.Zero, e.ToString(), "Error", 0);
             }
         }
     }
