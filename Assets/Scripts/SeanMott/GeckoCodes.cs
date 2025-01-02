@@ -41,4 +41,25 @@ public class GeckoCodes : MonoBehaviour
             }
         }
     }
+
+    //downloads the BS Codes
+    public void DownloadBSCodes()
+    {
+        //attempts a download
+        using (WebClient client = new WebClient())
+        {
+            try
+            {
+                client.DownloadFile("https://github.com/KARWorkshop/KAR-Gecko-ASM/releases/download/stardust/KBSE01.ini",
+                    Path.Combine(ValidateGeckoCodeDirectory(), "KBSE01.ini"));
+            }
+            catch (Exception e)
+            {
+                UnityEngine.Debug.LogError(e);
+                MainUI.instance.sfx.PlayOneShot(MainUI.instance.menu[4]);
+                MessageUI.MessageBox(IntPtr.Zero, e.ToString(), "Error", 0);
+            }
+        }
+    }
+
 }
