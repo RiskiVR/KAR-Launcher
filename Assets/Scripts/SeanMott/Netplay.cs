@@ -88,31 +88,15 @@ public class Netplay : MonoBehaviour
     }
 
 	//resets the client data
-	public void _on_reset_client_pressed()
-	{
-		ResetClientFolder();
-    }
+	public void _on_reset_client_pressed() => ResetClientFolder();
 
     //boots client for configuring
-    public void _on_configure_pressed()
-    {
-        BootClient("None");
-    }
+    public void _on_configure_pressed() => BootClient("None");
 
     //joins a match
-    public void _on_join_match_pressed()
-	{
-        BootClient("Lobby");
-	}
+    public void _on_join_match_pressed() => BootClient("Lobby");
 
 	//hosts a match
-	public void _on_host_match_pressed()
-	{
-        BootClient("Host");
-    }
-
-	public void _set_karphin_client(int client)
-	{
-		currentClient = client;
-	}
+	public void _on_host_match_pressed() => BootClient("Host");
+	public void _set_karphin_client(int client) => currentClient = client;
 }
